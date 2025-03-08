@@ -4,6 +4,13 @@ body {
     margin: 0;
     padding: 0;
 }
+header{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #f8f9fa
+}
 /* Nabar container */
 .navbar{
     display: flex; /*places items in a row */
@@ -13,21 +20,35 @@ body {
     background: white;
     border-bottom: 1px solid #ddd; /*light gray separator */
 }
+.nav-left{
+    display: flex;
+    align-items:center;
+    gap:15px;
+}
 /* logo */
-.logo {
+.logo img {
+    height:50px;
+    width: 50 px;
     margin-left: 10px;
 }
 /* search bar */
 .search-box{
     border: 1px solid #ccc; /*light gray border*/
     border-radius: 20px; /*makes it rounded */
-    padding: 10px 15pxx;
-    width: 200px;/*fixed width*/
+    padding: 10px 15px;
+    width: 250px;/*fixed width*/
     outline: none;/*removes default blue outline*/
+    display: flex;
+    font-size:14px;
 }
 /*search bar focus effect*/
 .search-box:focus{
-    border: 1px solid #FAD2E1; /*light pink outline on focus*/
+    border: 1px solid #f8a8a8; /*light pink outline on focus*/
+    border-radius: 20px;
+    padding: 10px 15px;
+    width:250px;
+    outline:none;
+    display:flex;
 }
 /*placeholder style */
 .search-box::placeholder{
@@ -36,33 +57,43 @@ body {
 /* Navigation Links */
 .nav-links {
     display: flex; /* Puts links in a row */
+    justify-content: center;
     gap: 20px; 
 }
 
 .nav-links a {
+    font-family: 'poppins';
+    font-size:16px;
     text-decoration: none; /* Removes underline */
     color: black; /* Default text color */
+    margin-right: 20px;
     font-size: 16px; /* Adjusts text size */
 }
 
 .nav-links a:hover {
-    color: #5b4aed; /* Turns blue on hover */
+   display: flex;
+   gap: 20px;
+   color: #5b4aed; /* Turns blue on hover */
 }
 /* Sign-In Button */
 .sign-in-btn {
-    background-color: #FAD2E1; /* Light pink */
-    border: none;
+    background-color: linear gradient(to right, #FAD2E1, #d6a5c0); /* Light pink */
     padding: 10px 15px; /* Adds space inside */
     border-radius: 20px; /* Makes it rounded */
+    border:none;
     cursor: pointer; /* Makes it clickable */
     margin-left: 10px; /* Adds spacing from the links */
+    text-transform: uppercase;
 }
 
 /* Hover Effect */
 .sign-in-btn:hover {
-    background-color: #f4a6c0; /* Darker pink on hover */
+    background-color: #f8a8a8; /* Darker pink on hover */
 }
 
-body{
-    background-color: lightblue;
+.nav-container{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
 }
