@@ -1,1 +1,68 @@
+body {
+    background-color: #ffffff; /*white background*/
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+/* Nabar container */
+.navbar{
+    display: flex; /*places items in a row */
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: white;
+    border-bottom: 1px solid #ddd; /*light gray separator */
+}
+/* logo */
+.logo {
+    margin-left: 10px;
+}
+/* search bar */
+.search-box{
+    border: 1px solid #ccc; /*light gray border*/
+    border-radius: 20px; /*makes it rounded */
+    padding: 10px 15pxx;
+    width: 200px;/*fixed width*/
+    outline: none;/*removes default blue outline*/
+}
+/*search bar focus effect*/
+.search-box:focus{
+    border: 1px solid #FAD2E1; /*light pink outline on focus*/
+}
+/*placeholder style */
+.search-box::placeholder{
+    font-size: 14px;
+}
+/* Navigation Links */
+.nav-links {
+    display: flex; /* Puts links in a row */
+    gap: 20px; 
+}
 
+.nav-links a {
+    text-decoration: none; /* Removes underline */
+    color: black; /* Default text color */
+    font-size: 16px; /* Adjusts text size */
+}
+
+.nav-links a:hover {
+    color: #5b4aed; /* Turns blue on hover */
+}
+/* Sign-In Button */
+.sign-in-btn {
+    background-color: #FAD2E1; /* Light pink */
+    border: none;
+    padding: 10px 15px; /* Adds space inside */
+    border-radius: 20px; /* Makes it rounded */
+    cursor: pointer; /* Makes it clickable */
+    margin-left: 10px; /* Adds spacing from the links */
+}
+
+/* Hover Effect */
+.sign-in-btn:hover {
+    background-color: #f4a6c0; /* Darker pink on hover */
+}
+
+body{
+    background-color: lightblue;
+}
