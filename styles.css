@@ -78,7 +78,7 @@ nav ul li a {
    /* Sign In Button */
    .btn-signin {
     background: linear-gradient(90deg, #fdeb85, #f8a4d8); /* Gradient Colors */
-    color: black; /* Text Color */
+    color: white; /* Text Color */
     font-weight: bold; /* Bold Text */
     padding: 10px 20px; /* Button Padding */
     border-radius: 20px; /* Rounded Edges */
@@ -170,6 +170,9 @@ nav ul li a {
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+a{
+    text-decoration: none;
+}
  /*icon styling */
  .course-btn i {
     font-size: 1.8 rem;
@@ -191,7 +194,7 @@ nav ul li a {
 /* Explore More Button */
 .btn-explore {
     background: linear-gradient(90deg, #fdeb85, #f8a4d8); /* Gradient Colors */
-    color: black; /* Text Color */
+    color: white; /* Text Color */
     font-weight: bold; /* Bold Text */
     padding: 10px 20px; /* Button Padding */
     border-radius: 20px; /* Rounded Edges */
@@ -216,7 +219,7 @@ footer {
 
 .footer-links a {
     color: white;
-    text-decoration: underline;
+    text-decoration: none;
     margin: 0 10px;
 }
 
@@ -243,7 +246,6 @@ footer {
         align-items: center;
     }
 }
-/*rgb(228, 228, 119), yellow,orange, rgb(164, 111, 11) #ff7eb3, #ff758c,purple);
 /*#ff7eb3,#ff758c
 /*.btn-signin {
     padding: 10px 20px;
