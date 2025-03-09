@@ -2,26 +2,62 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-    content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OpenLearn Hub</title>
- <link rel="stylesheet"
-    href="styles.css">
-    </head>
- <body>
-<header>
-<div class="logo">
-    <img src="logo.png.jpeg"
-    alt="OpenLearn Hub logo">
-</div>
-<input type="text" class="search-bar" placeholder="🔍Search">
-<nav class="nav-links">
-<a href="#">Home</a>
-<a href="#">About Us</a>
-<a href="#">Courses</a>
-</nav>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-<button class="sign-in">Sign In</button>
-</header>
+    <!-- Navbar -->
+    <header>
+        <div class="logo">
+            <img src="logo.png.jpeg" alt="OpenLearn Hub">
+        </div>
+        <div class="search-box">
+            <input type="text" placeholder="Search...">
+            <button>&#128269;</button> <!-- Search Icon -->
+        </div>
+        <nav>
+            <ul>
+                <li><a href="webtest.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="signin.html" class="btn-signin">SIGN IN</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1><span class="orange">Fuel</span> your <span class="italic">curiosity</span>,<br> Ignite your <span class="bold">career!</span></h1>
+        </div>
+    </section>
+
+    <!-- Course Selection -->
+    <section class="courses">
+        <h2>Pick a <span class="italic">course</span> to get <span class="purple">started!</span></h2>
+        <div class="course-buttons">
+            <a href="tech.html" class="course-btn tech">Tech & Programming</a>
+            <a href="business.html" class="course-btn business">Business & Finance</a>
+            <a href="languages.html" class="course-btn languages">Languages</a>
+        </div>
+        <a href="explore.html" class="btn-explore">Explore more →</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="about.html">About Us</a>
+            <a href="feedback.html">Feedback</a>
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
+        <div class="social-icons">
+            <a href="#"><img src="email-icon.png" alt="Email"></a>
+            <a href="#"><img src="linkedin-icon.png" alt="LinkedIn"></a>
+            <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+        </div>
+    </footer>
+
 </body>
 </html>

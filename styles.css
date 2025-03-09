@@ -1,99 +1,209 @@
+html{
+    scroll-behavior: smooth;
+}
+/* General Styles */
 body {
-    background-color: #ffffff; /*white background*/
-    font-family: sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
-header{
-    display:flex;
-    align-items: center;
+
+/* Navbar */
+header {
+    display: flex;
     justify-content: space-between;
-    padding: 10px 20px;
-    background-color: #f8f9fa
-}
-/* Nabar container */
-.navbar{
-    display: flex; /*places items in a row */
     align-items: center;
-    justify-content: space-between;
     padding: 10px 20px;
     background: white;
-    border-bottom: 1px solid #ddd; /*light gray separator */
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
-.nav-left{
-    display: flex;
-    align-items:center;
-    gap:15px;
-}
-/* logo */
+
 .logo img {
-    height:50px;
-    width: 50 px;
-    margin-left: 10px;
+    height:80px;
+    width: 80px;
+    border-radius: 50%;
 }
-/* search bar */
-.search-box{
-    border: 1px solid #ccc; /*light gray border*/
-    border-radius: 20px; /*makes it rounded */
-    padding: 10px 15px;
-    width: 250px;/*fixed width*/
-    outline: none;/*removes default blue outline*/
+
+.search-box {
+    width: 400px;
+    max-width: 100%;/*for all screen sizes*/
     display: flex;
-    font-size:14px;
-}
-/*search bar focus effect*/
-.search-box:focus{
-    border: 1px solid #f8a8a8; /*light pink outline on focus*/
+    border: 1px solid #ccc;
     border-radius: 20px;
-    padding: 10px 15px;
-    width:250px;
-    outline:none;
-    display:flex;
-}
-/*placeholder style */
-.search-box::placeholder{
-    font-size: 14px;
-}
-/* Navigation Links */
-.nav-links {
-    display: flex; /* Puts links in a row */
-    justify-content: center;
-    gap: 20px; 
+    padding: 8px 12px;
+    outline: none;
+    overflow: hidden;
 }
 
-.nav-links a {
-    font-family: 'poppins';
-    font-size:16px;
-    text-decoration: none; /* Removes underline */
-    color: black; /* Default text color */
-    margin-right: 20px;
-    font-size: 16px; /* Adjusts text size */
-}
-
-.nav-links a:hover {
-   display: flex;
-   gap: 20px;
-   color: #5b4aed; /* Turns blue on hover */
-}
-/* Sign-In Button */
-.sign-in-btn {
-    background-color: linear gradient(to right, #FAD2E1, #d6a5c0); /* Light pink */
-    padding: 10px 15px; /* Adds space inside */
-    border-radius: 20px; /* Makes it rounded */
+.search-box input {
     border:none;
-    cursor: pointer; /* Makes it clickable */
-    margin-left: 10px; /* Adds spacing from the links */
-    text-transform: uppercase;
+    outline: none;
+    padding: 8px;
+    width: 150px;
 }
 
-/* Hover Effect */
-.sign-in-btn:hover {
-    background-color: #f8a8a8; /* Darker pink on hover */
+.search-box button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 8px;
+    border-color: #32022c;
 }
 
-.nav-container{
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+   /* Sign In Button */
+   .btn-signin {
+    background: linear-gradient(90deg, #fdeb85, #f8a4d8); /* Gradient Colors */
+    color: black; /* Text Color */
+    font-weight: bold; /* Bold Text */
+    padding: 10px 20px; /* Button Padding */
+    border-radius: 20px; /* Rounded Edges */
+    border: none; /* No Border */
+    cursor: pointer; /* Pointer Cursor */
+    display: inline-flex; /* Aligns Icon with Text */
+    align-items: center; /* Centers Content */
+    gap: 5px; /* Spacing between text and icon */
+  }
+/* Hero Section */
+.hero {
+    background: url('bg\ homepage.jpeg') no-repeat center center;
+    background-size: cover;  /* Ensures it covers the section */
+    height: 100vh;  /* Makes sure it takes full screen height */
+    width: 100%;
     display: flex;
     align-items: center;
-    width: 100%;
-    justify-content: space-between;
+    justify-content: center;
+    padding: 50px 20px;
+    background-attachment: scroll;  /* Allows scrolling */
 }
+
+
+
+.hero-content {
+    font-size: 2.5rem; /* Adjust size as needed */
+    font-weight: bold;
+    text-align: left;
+    width: 100%; /* Ensures it stretches across */
+    padding-left: 50px; /* Adjust for spacing from the left */
+}
+
+
+.orange { color: orange; }
+.italic { font-style: italic; }
+.bold { font-weight: bold; }
+
+/* Course Section */
+.courses {
+    text-align: center;
+    padding: 30px;
+        max-height: 400px; /* Adjust height to make it scrollable */
+        overflow-y: auto; /* Enables scrolling if content overflows */
+        padding: 20px;
+    
+}
+.course-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+        font-size: 1.2rem; /* Increase text size */
+        padding: 15px 30px; /* Adjust button size */
+    
+}
+
+.course-btn {
+    text-decoration: none;
+    padding: 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+}
+
+.tech { background: rgb(204,255,21); color: black; }
+.business { background: rgb(57,255,20); color: black; }
+.languages { background: rgb(255,19,240); color: black; }
+
+
+/* Explore More Button */
+.btn-explore {
+    background: linear-gradient(90deg, #fdeb85, #f8a4d8); /* Gradient Colors */
+    color: black; /* Text Color */
+    font-weight: bold; /* Bold Text */
+    padding: 10px 20px; /* Button Padding */
+    border-radius: 20px; /* Rounded Edges */
+    border: none; /* No Border */
+    cursor: pointer; /* Pointer Cursor */
+    display: inline-flex; /* Aligns Icon with Text */
+    align-items: center; /* Centers Content */
+    gap: 5px; /* Spacing between text and icon */
+  }
+  
+  .button:hover {
+    opacity: 0.9; /* Slight fade effect on hover */
+  }
+  
+/* Footer */
+footer {
+    background: #0047ab;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.social-icons img {
+    width: 25px;
+    margin: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .course-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+/*rgb(228, 228, 119), yellow,orange, rgb(164, 111, 11) #ff7eb3, #ff758c,purple);
+/*#ff7eb3,#ff758c
+/*.btn-signin {
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(to right,rgb(228, 228, 119), yellow,orange, rgb(164, 111, 11), #ff7eb3, #ff758c,purple);
+    transition: 0.3s ease-in-out;
+}
+    /*.btn-explore {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(to right,rgb(228, 228, 119), yellow,orange, rgb(164, 111, 11), #ff7eb3, #ff758c,purple);
+    transition: 0.3s ease-in-out;
+}
+
