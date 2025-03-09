@@ -130,8 +130,6 @@ nav ul li a {
 .italic { font-style: italic; }
 .bold { font-weight: bold; }
 
-
-
 /* Course Section */
 .courses {
     text-align: center;
@@ -176,11 +174,12 @@ nav ul li a {
  .course-btn i {
     font-size: 1.8 rem;
     margin-bottom: 5px;
- }
+    color:white;
+ } 
  /*button colors */
-.tech { background: rgb(204, 242, 66); color: black; }
-.business { background: rgb(140, 238, 123); color: black; }
-.languages { background: rgb(230, 106, 221); color: black; }
+.tech { background: rgb(204, 242, 66); color: white; }
+.business { background: rgb(140, 238, 123); color: white; }
+.languages { background: rgb(230, 106, 221); color:white; }
 
 /*hover effect */
 .course-btn:hover{
@@ -204,8 +203,7 @@ nav ul li a {
   }
   
   .button:hover {
-    transform: translateY(-3px); 
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    opacity: 0.9; /* slightly fades on hover*/
   }
   
 /* Footer */
@@ -266,3 +264,55 @@ footer {
     transition: 0.3s ease-in-out;
 }
 
+/*about us page styles*/
+.about-container {
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column; /* Stacks items vertically */
+    align-items: center; 
+    justify-content: center; 
+    height: 100vh; /* Makes it take the full screen height */
+    text-align: center; 
+    max-width: 800pxx; /*better readability*/
+    margin: 50px auto; /*centers content*/
+    padding: 20px; /*adds space inside container*/
+}
+.about-us { 
+    background: linear-gradient(to right, #f5f7fa, #c3cfe2); /* Soft minimal gradient */
+    background-attachment: fixed; /* Keeps it fixed when scrolling */
+    background-size: cover; /* Ensures it covers the full screen */
+    min-height: 100vh; /* Full page height */
+    width: 100%; 
+    padding: 40px;
+    border-radius: 10px;
+}
+.about-page {
+    font-family: 'Poppins';
+    color:#333;
+}
+.about-us h1,
+.about-us h2 {
+    font-family: 'poppins', sans-serif;
+    font-weight: 650;
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+p{
+    font-size: 18px;
+    line-height: 1.6; /*adds spacing between lines */
+    color:#555;
+}
+h4{
+    font-family: 'poppins';
+    font-size: 18px;
+    font-weight: 600;
+    color: #555;
+}
+.about-footer {
+    margin-top: 50px;
+    text-align: center;
+    padding: 10px;
+    background: #2c3e50; /* Dark background */
+    color: white;
+}
