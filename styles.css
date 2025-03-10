@@ -228,6 +228,7 @@ a{
     display: inline-flex; /* Aligns Icon with Text */
     align-items: center; /* Centers Content */
     gap: 5px; /* Spacing between text and icon */
+    margin-top: 30px;
   }
   
   .btn-explore:hover {
@@ -272,25 +273,6 @@ footer {
         flex-direction: column;
         align-items: center;
     }
-}
-/*#ff7eb3,#ff758c
-/*.btn-signin {
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-weight: bold;
-    color: white;
-    background: linear-gradient(to right,rgb(228, 228, 119), yellow,orange, rgb(164, 111, 11), #ff7eb3, #ff758c,purple);
-    transition: 0.3s ease-in-out;
-}
-    /*.btn-explore {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-weight: bold;
-    color: white;
-    background: linear-gradient(to right,rgb(228, 228, 119), yellow,orange, rgb(164, 111, 11), #ff7eb3, #ff758c,purple);
-    transition: 0.3s ease-in-out;
 }
 
 /*about us page styles*/
