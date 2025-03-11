@@ -21,7 +21,7 @@ body {
     align-items: center;
     height: 100vh;
     width:100vw;
-    background: url("signin.bg.jpeg") no-repeat center center fixed!important;
+    background: url("sign-in.jpeg") no-repeat center center fixed!important;
     background-size: cover;
     /*background-position: center!important;*/
 }

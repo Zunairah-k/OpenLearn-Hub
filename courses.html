@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - OpenLearn Hub</title>
+    <link rel="stylesheet"
+    href="courses.css">
+    <link rel="stylesheet"
+ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <div class="logo">
+            <img src="logo.png.jpeg" alt="OpenLearn Hub logo">
+        </div>
+        <div class="courses-container">
+            <h1>📚 Courses</h1>
+            </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="signin.html"><button class="btn-signin">SIGN IN</a>
+        </nav>
+    </header>
+<!-- search bar -->
+ <div class="search-container">
+    <input type="text" placeholder="Search for courses...">
+    <i class="fa-solid fa-search"></i>
+ </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="banner-container">
+            <div class="banner">
+        <img src="banner.jpeg" alt="Learning Banner">
+        <div class="banner-text">
+        <h2>Customise your learning-</h2>
+        <p>Select by course type <br>[PDFs, tutorials, courses] & duration!</p>
+        </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Course Categories -->
+    <section class="course-buttons">
+        <button><i class="fa-solid fa-laptop-code"!important></i>Tech & Programming</button>
+        <button><i class="fa-solid fa-chart-line"></i>Business & Finance</button>
+        <button><i class="fa-solid fa-language"></i>Languages</button>
+        <button><i class="fa-solid fa-user-graduate"></i>Personal Development</button>
+        <button><i class="fa-solid fa-fire"></i>Highly Demanded Courses</button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="interactive-footer">
+        <h3>🚀 Choose Your Path</h3>
+        <p>Not sure what to do next? Let us guide you!</p>
+    
+        <div class="footer-buttons">
+            <button onclick="learnNew()">📚 I want to learn something new</button>
+            <button onclick="showMotivation()">💡 I need motivation!</button>
+            <button onclick="surpriseMe()">🎁 Surprise me!</button>
+        </div>
+    
+        <p id="footer-message"></p>
+    
+        <div class="footer-bottom">
+            <p>© 2025 OpenLearn Hub | Keep Learning, Keep Growing.</p>
+        </div>
+    </footer>
+<!--loading javascript after te content to ensure smooth execution of footer -->
+<script src="script.js"></script>
+</body>
+</html>

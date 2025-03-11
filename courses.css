@@ -1,0 +1,257 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+}
+body{
+    background:linear-gradient(135deg, #f8f9fa, #c2ddf7);
+}
+/* Navigation Bar */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #f8f9fa;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+.courses-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    margin-top: 0; /* Remove extra margin */
+    margin-top: 20px;
+}
+/* Sign In Button */
+.btn-signin {
+    background: linear-gradient(90deg, #fdeb85, #f8a4d8); /* Gradient Colors */
+    color: white !important; /* Text Color */
+    font-weight: bold; /* Bold Text */
+    padding: 10px 20px; /* Button Padding */
+    border-radius: 20px; /* Rounded Edges */
+    border: none; /* No Border */
+    cursor: pointer; /* Pointer Cursor */
+    display: inline-flex; /* Aligns Icon with Text */
+    align-items: center; /* Centers Content */
+    gap: 5px; /* Spacing between text and icon */
+  }
+/*style search bar*/
+.search-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+margin-top: 20px;
+margin-left: auto;
+margin-right: auto;
+width: 100%;
+max-width: 500px;
+position: relative;
+}
+.search-container input{
+    width: 100%;
+    max-width: 500px;
+    padding: 12px 45px 12px 15px;
+    border-radius: 25px;
+    border: 2px solid #f7cac9;
+    font-size: 16px;
+    transition: border-color 0.3s ease-in-out;
+    outline: none;
+}
+.search-container i{
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #181717;
+    font-size: 18px;
+    cursor: pointer;
+}
+/*stop border from turning black on click*/
+.search-container input:focus{
+    border-color: #f5a9a9;
+    outline:none;
+}
+header h1 {
+    color: #007bff;
+}
+.logo img {
+    height:60px;
+    width: 60px;
+    border-radius: 50%;
+    margin-left:-10px;
+}
+nav a {
+    margin-right: 20px;
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease-in-out;
+}
+nav a:hover {
+    color:#6202ac;
+}
+nav button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+/*hero-section*/
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px; /* Space between banner & resources box */
+    flex-wrap: wrap; /* Makes it responsive */
+    padding: 40px 20px;
+}
+.banner-container {
+    position: relative;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px 0;
+    width: 100%;
+    margin-bottom: 10px; /*prevent pushing button down*/
+}
+/* Banner Section */
+.banner {
+    width: 60%; /* Full width */
+    height: 135px; /* Adjust as needed */
+    background: url('banner.jpeg') no-repeat left center; /* Moves banner to left */
+    background-size: cover;
+    position: absolute; /* So text can be positioned over it */
+    top: 0;
+    border-radius: 16px;
+    margin-bottom: 30px;
+    z-index: 1; /*ensure it doesnt overlap elements*/
+}
+
+.banner img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;  /* Moves text towards the center/right */
+    transform: translateY(-50%, -50%);
+    color: black; /* Adjust for contrast */
+    font-size: 1.2rem; /* Reduce font size slightly */
+    text-align: center; /* Ensures text stays aligned properly */
+    max-width: 80%; /* Prevents it from stretching too much */
+}
+.banner-text h2 {
+    color: #007bff;
+}
+.banner-text p{
+    color:#000;
+}
+/* Course Categories */
+.course-buttons {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 20px; /* Adds space between buttons */
+    align-items: center; /* Centers buttons horizontally */
+    margin-top: 200px; /*moves button section down*/
+}
+
+.course-buttons button {
+    display: flex;
+    flex-direction: column; /*stack icon above text*/
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /*space between icon &text*/
+    width: 300px;
+    height: 50px; 
+    padding: 22px 30px; 
+    color: white;
+    font-size: 20px;
+    font-weight: bold; 
+    border: none; 
+    border-radius: 16px;
+    width: 100%;
+    max-width: 380px; /*make button wider*/
+    min-height: 80px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 1.4;
+    flex-shrink: 0; /*prevent shrinking*/
+    background: white; /* Or any color */
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+/* Hover Effect */
+.course-buttons button:hover {
+    transform: translateY(-5px); /* Lifts button */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); /* Increases shadow */
+}
+.course-buttons button i{
+    font-size: 30px;
+    color: white;
+}
+button:nth-child(1) { background-color: #ffde59; }
+button:nth-child(2) { background-color: #c1ff72; }
+button:nth-child(3) { background-color: #ff66c4; }
+button:nth-child(4) { background-color: #cb6ce6; }
+button:nth-child(5) { background-color: #319eeb; }
+
+/* Footer */
+.interactive-footer {
+    background: #222; /* Dark background for contrast */
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+    border-top: 5px solid #007bff;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    width:100px;
+    margin-top: 50px ;
+    bottom:0;
+    width:100%;
+}
+
+.footer-buttons {
+    margin: 20px 0;
+}
+
+.footer-buttons button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    margin: 8px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+}
+
+.footer-buttons button:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+#footer-message {
+    margin-top: 15px;
+    font-size: 16px;
+    font-style: italic;
+    color: #f8f9fa;
+}
+
+.footer-bottom {
+    margin-top: 30px;
+    font-size: 14px;
+    opacity: 0.7;
+}
