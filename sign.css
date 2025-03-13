@@ -14,14 +14,20 @@
     padding:0;
     box-sizing: border-box;
 }
-
+html, body {
+    height: 100;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     width:100vw;
-    background: url("sign-in.jpeg") no-repeat center center fixed!important;
+    background: url("sign-in.jpeg") repeat center center fixed!important;
     background-size: cover;
     /*background-position: center!important;*/
 }
@@ -130,15 +136,6 @@ p a:hover {
     font-family: 'Poppins', sans-serif;
 }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: url('https://source.unsplash.com/1600x900/?abstract,light') no-repeat center center;
-    background-size: cover;
-}
-
 /* Login Container */
 .login-container {
     display: flex;
@@ -234,3 +231,9 @@ p a {
 p a:hover {
     text-decoration: underline;
 }
+@media (max-width: 768px) {  /* Tablets & smaller screens */
+    body {
+        background-size: contain;  /* Shows the full image */
+        background-color: rgb(147, 197, 255);   /* Adds background in case of gaps */
+    }
+} 

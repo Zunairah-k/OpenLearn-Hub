@@ -1,0 +1,55 @@
+body {
+    font-family: 'poppins', sans-serif;
+    color: #333; /* Darker text for better readability */
+    background-color: #e3f2fd; /* Light background for contrast */
+    margin: 0;
+    padding: 20px;
+}
+
+.privacy-container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.privacy-policy-title{
+    text-align:center;
+}
+h1, h2 {
+    color: #0077cc; /* Ensure headings are fully visible */
+}
+
+p {
+    color: #333; /* Slightly darker text for readability */
+    line-height: 1.6;
+
+}
+ul {
+    color: #555; /* Make bullet points visible */
+}
+
+b {
+    color: #222; /* Make bold text stand out */
+}
+footer {
+    text-align: center;
+    padding: 15px 0;
+    background: #2c3e50; /* Dark footer background */
+    width: 100%;
+    margin-top: 30px; /* Creates spacing from content */
+    position: relative;
+    bottom: 0;
+    left: 0;
+}
+footer p{
+    color: white;
+    font-size: 16px;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
