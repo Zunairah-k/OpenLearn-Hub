@@ -31,13 +31,67 @@ header {
 .search-box {
     width: 500px;
     max-width: 100%;/*for all screen sizes*/
+    height:70px;
+    width: 70px;
+    border-radius: 50%;
+}
+.logo{
+    flex:1;
+}
+
+/*Align logo, menu, and search bar in a row */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Adds space between elements */
+}
+
+/* Center section: Search Bar */
+.header-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+/* Right section: Navigation */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Swap positions using flexbox */
+.header-left .logo {
+    order: 1; /* Logo appears first */
+}
+
+.menu-toggle {
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-right: 10px; /* Adjust spacing */
+}
+
+.header-left .menu-toggle {
+    order: 2; /* Menu appears after logo */
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.search-box {
+    flex:1;
+    width: 60%;
+    max-width: 400px;/*for all screen sizes*/
     display: flex;
     align-items: center;
     border: 1px solid #ccc;
     border-radius: 25px;
-    padding: 10px 15px;
-    outline: none;
-    overflow: hidden;
+    padding: 8px 13px;
     background: white;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /*soft shadow*/
     transition: box-shadow 0.3s ease;
@@ -47,7 +101,7 @@ header {
     border:none;
     outline: none;
     padding: 10px;
-    flex: 1; /*allows input to take full available space*/ 
+    flex: 2;  
     font-size: 16px;
 }
 .search-box input::placeholder{
@@ -66,11 +120,16 @@ header {
     padding: 5px 10px;
 }
 
+nav{
+    flex:1;
+    display: flex;
+    justify-content: flex-end;
+}
+
 nav ul {
     list-style: none;
     display: flex; /*keeps links in row*/
-    list-style: none;
-    margin-right:20px;
+    /*margin-right:20px;*/
     gap: 40px;
     align-items: center;
 }
@@ -89,7 +148,7 @@ nav ul a:hover {
     background: linear-gradient(90deg, #fdeb85, #f8a4d8); /* Gradient Colors */
     color: white; /* Text Color */
     font-weight: bold; /* Bold Text */
-    padding: 10px 20px; /* Button Padding */
+    padding: 8px 16px; /* Button Padding */
     border-radius: 20px; /* Rounded Edges */
     border: none; /* No Border */
     cursor: pointer; /* Pointer Cursor */
@@ -97,10 +156,97 @@ nav ul a:hover {
     align-items: center; /* Centers Content */
     gap: 5px; /* Spacing between text and icon */
   }
+
+  /* Responsive Design */
+@media screen and (max-width: 768px) {
+    header{
+        flex-wrap: wrap;
+        justify-content: space-between;
+    /* padding: 10px;*/
+    }
+    .header-left {
+        flex: 1;
+        display: flex;
+        align-items: center;
+    }
+
+    .header-center {
+        order: 2; /* Ensures search bar stays in the middle */
+        flex: 1;
+        display: flex;
+        justify-content: center;
+    }
+
+    .header-right {
+        order: 3; /* Moves navigation to the right */
+    }
+
+    .logo img {
+        height: 50px;
+        width: 50px;
+    }
+
+    .search-box {
+        width: 100%;
+        max-width: 300px;
+        margin: 10px 0;
+        flex: 2;
+    }
+
+    nav ul {
+        display: none; /* Hide menu initially */
+        flex-direction: column;
+        background: white;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+
+    nav ul.show {
+        display: flex; /* Show menu when toggled */
+    }
+
+    nav ul li {
+        text-align: center;
+        width: 100%;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 10px;
+    }
+
+    /* Hamburger Menu */
+    .menu-toggle {
+        display: block;
+        font-size: 24px;
+        margin-right: 20px;
+        cursor: pointer;
+        color: black;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .search-box {
+        max-width: 250px;
+    }
+}
+
+/* Hide menu toggle icon on large screens */
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none;
+    }
+}
+
 /* Hero Section */
 .hero {
     background: url('bg\ homepage.jpeg') no-repeat center center;
     background-size: cover;  /* Ensures it covers the section */
+    min-height: 100vh;
     height: 100vh;  /* Makes sure it takes full screen height */
     width: 100%;
     display: flex;
@@ -111,6 +257,16 @@ nav ul a:hover {
 }
 
 
+/* For smaller screens */
+@media (max-width: 768px) {
+    .hero {
+        background-size: contain; /* Ensures the full image is visible */
+        background-position: center;
+        background-repeat: no-repeat;
+        height: auto; /* Allows content to determine height */
+        min-height: 70vh; /* Adjust as needed */
+    }
+}
 
 .hero-content {
     font-size: 3rem; /* Adjust size as needed */
@@ -138,6 +294,23 @@ nav ul a:hover {
 .orange { color: orange; }
 .italic { font-style: italic; }
 .bold { font-weight: bold; }
+
+/* For tablets */
+@media (max-width: 768px) {
+    .hero-content {
+        font-size: 2rem; /* Smaller font for medium screens */
+        padding-left: 30px;
+    }
+}
+
+/* For mobile screens */
+@media (max-width: 480px) {
+    .hero-content {
+        font-size: 1.2rem; /* Even smaller font for small screens */
+        padding-left: 10px;
+        text-align: center;
+    }
+}
 
 /* Course Section */
 .courses {

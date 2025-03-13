@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenLearn Hub - Sub Courses</title>
+    <link rel="stylesheet" href="subcourse.css">
+</head>
+<body>
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumbs">
+        <a href="index.html">Home</a> > 
+        <a href="courses.html">Courses</a> > 
+        <span id="category-title"></span>
+    </nav>
+
+    <!-- Page Title -->
+    <h1 id="page-title"></h1>
+
+    <!-- Filters & Search -->
+    <div class="filters">
+        <input type="text" id="search" placeholder="Search">
+        <select id="filter-level">
+            <option value="all">All Levels</option>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
+        </select>
+    </div>
+
+    <!-- Sub-Courses Grid -->
+    <div id="sub-courses-container" class="course-grid"></div>
+
+    <script>
+        // Retrieve selected category from localStorage
+        const selectedCategory = localStorage.getItem("selectedCategory");
+        document.getElementById("category-title").innerText = selectedCategory || "Courses";
+        document.getElementById("page-title").innerText = selectedCategory || "Courses";
+
+        // List of sub-courses by category
+        const subCourses = {
+            "Tech & Programming": [
+                "Full-Stack Web Development",
+                "Data Science & Machine Learning",
+                "AI & Deep Learning",
+                "Cybersecurity & Ethical Hacking",
+                "Blockchain & Web3 Development",
+                "DevOps & Cloud Computing",
+                "Android & iOS App Development"
+            ],
+            "Business & Finance": [
+                "Stock Market & Crypto Trading",
+                "Digital Marketing & SEO",
+                "Entrepreneurship & Startups"
+            ],
+            "Languages": [
+                "English",
+                "Spanish",
+                "Mandarin Chinese",
+                "Russian",
+                "Korean & Japanese"
+            ],
+            "Personal Development & Productivity": [
+                "Public Speaking & Communication Skills",
+                "Time Management & Productivity Hacks",
+                "Freelancing & Side Hustles"
+            ],
+            "Highly Demanded Courses": [
+                "English Speaking & IELTS Preparation",
+                "Swift (iOS development)",
+                "Dart (Flutter)"
+            ]
+        };
+
+        // Get the sub-course container
+        const container = document.getElementById("sub-courses-container");
+
+        // Populate sub-course list based on selected category
+        if (selectedCategory && subCourses[selectedCategory]) {
+            subCourses[selectedCategory].forEach(course => {
+                const card = document.createElement("div");
+                card.classList.add("course-card");
+                card.innerHTML = `<h3>${course}</h3>`;
+                container.appendChild(card);
+            });
+        } else {
+            container.innerHTML = "<p>No courses found.</p>";
+        }
+    </script>
+
+    <!-- footer -->
+     <footer>
+        <p>&copy; 2025 OpenLearn Hub</p>
+     </footer>
+</body>
+</html>

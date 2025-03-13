@@ -6,23 +6,24 @@
     <title>Courses - OpenLearn Hub</title>
     <link rel="stylesheet"
     href="courses.css">
+    <link rel="stylesheet" href="courses.css">
     <link rel="stylesheet"
  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
     <!-- Navigation Bar -->
     <header>
-        <div class="logo">
-            <img src="logo.png.jpeg" alt="OpenLearn Hub logo">
-        </div>
-        <div class="courses-container">
-            <h1>📚 Courses</h1>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="logo.png.jpeg" alt="OpenLearn Hub logo">
             </div>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About Us</a>
-            <a href="signin.html"><button class="btn-signin">SIGN IN</a>
-        </nav>
+            <h1 class="courses-title">📚 Courses</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="signin.html" class="btn-signin">SIGN IN</a>
+            </nav>
+        </div>
     </header>
 <!-- search bar -->
  <div class="search-container">
@@ -43,13 +44,27 @@
         </div>
     </section>
 
+    <!-- Our Top Resources Section -->
+<div class="top-resources-container">
+    <div class="top-resources">
+        <h3>Our top resources-</h3>
+        <div class="resource-icons">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo3pl_zOXCdfxx2ksowu1H39fbyBpFMdo7Dw&s" alt="Coursera" class="resource-img">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReHxPC-DGRTX_9_vQFhQbAtNNV6ccTxgOnuQ&s" alt="Khan Academy" class="resource-img">
+            <img src="https://logowik.com/content/uploads/images/udemy-new-20212512.jpg" alt="Udemy" class="resource-img">
+        </div>
+    </div>
+</div>
+</section>
+
+
     <!-- Course Categories -->
     <section class="course-buttons">
-        <button><i class="fa-solid fa-laptop-code"!important></i>Tech & Programming</button>
-        <button><i class="fa-solid fa-chart-line"></i>Business & Finance</button>
-        <button><i class="fa-solid fa-language"></i>Languages</button>
-        <button><i class="fa-solid fa-user-graduate"></i>Personal Development</button>
-        <button><i class="fa-solid fa-fire"></i>Highly Demanded Courses</button>
+        <button class="category-button" data-category="Tech & Programming"><i class="fa-solid fa-laptop-code"!important></i>Tech & Programming</button>
+        <button class="category-button" data-category="Business & Finance"><i class="fa-solid fa-chart-line"></i>Business & Finance</button>
+        <button class="category-button" data-category="Languages"><i class="fa-solid fa-language"></i>Languages</button>
+        <button class="category-button" data-category="Personal Development & Productivity"><i class="fa-solid fa-user-graduate"></i>Personal Development</button>
+        <button class="category-button" data-category="Highly Demanded Courses"><i class="fa-solid fa-fire"></i>Highly Demanded Courses</button>
     </section>
 
     <!-- Footer -->
@@ -71,5 +86,19 @@
     </footer>
 <!--loading javascript after te content to ensure smooth execution of footer -->
 <script src="script.js"></script>
+<script>
+    // Function to store selected category and redirect
+    function openSubCoursePage(category) {
+        localStorage.setItem("selectedCategory", category); // Save category
+        window.location.href = "subcourse.html"; // Redirect to sub-course page
+    }
+
+    // Attach click event to buttons
+    document.querySelectorAll(".category-button").forEach(button => {
+        button.addEventListener("click", function() {
+            openSubCoursePage(this.getAttribute("data-category"));
+        });
+    });
+</script>
 </body>
 </html>
