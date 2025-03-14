@@ -5,21 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OpenLearn Hub - Sub Courses</title>
     <link rel="stylesheet" href="subcourse.css">
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <!-- Breadcrumb Navigation -->
+     <header class="breadcrumbs-header">
     <nav class="breadcrumbs">
         <a href="index.html">Home</a> > 
         <a href="courses.html">Courses</a> > 
         <span id="category-title"></span>
     </nav>
-
+</header>
     <!-- Page Title -->
     <h1 id="page-title"></h1>
 
     <!-- Filters & Search -->
     <div class="filters">
-        <input type="text" id="search" placeholder="Search">
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Search">
+            <button id="search-btn"><i class="fa-solid fa-search"></i></button>
+        </div>
         <select id="filter-level">
             <option value="all">All Levels</option>
             <option value="beginner">Beginner</option>
@@ -29,7 +35,7 @@
     </div>
 
     <!-- Sub-Courses Grid -->
-    <div id="sub-courses-container" class="course-grid"></div>
+    <div id="sub-courses-container" class="sub-course-grid"></div>
 
     <script>
         // Retrieve selected category from localStorage
@@ -80,7 +86,34 @@
             subCourses[selectedCategory].forEach(course => {
                 const card = document.createElement("div");
                 card.classList.add("course-card");
-                card.innerHTML = `<h3>${course}</h3>`;
+                const icons = {
+    "Full-Stack Web Development": "fa-solid fa-code",
+    "Data Science & Machine Learning": "fa-solid fa-database",
+    "AI & Deep Learning": "fa-solid fa-robot",
+    "Cybersecurity & Ethical Hacking": "fa-solid fa-lock",
+    "Blockchain & Web3 Development": "fa-solid fa-cube",
+    "DevOps & Cloud Computing": "fa-solid fa-cloud",
+    "Android & iOS App Development": "fa-solid fa-mobile-alt",
+    "Stock Market & Crypto Trading": "fa-solid fa-chart-line",
+    "Digital Marketing & SEO": "fa-solid fa-bullhorn",
+    "Entrepreneurship & Startups": "fa-solid fa-lightbulb",
+    "English": "fa-solid fa-language",
+    "Spanish": "fa-solid fa-globe",
+    "Mandarin Chinese": "fa-solid fa-language",
+    "Russian": "fa-solid fa-flag",
+    "Korean & Japanese": "fa-solid fa-pen-nib",
+    "Public Speaking & Communication Skills": "fa-solid fa-microphone",
+    "Time Management & Productivity Hacks": "fa-solid fa-clock",
+    "Freelancing & Side Hustles": "fa-solid fa-briefcase",
+    "English Speaking & IELTS Preparation": "fa-solid fa-book",
+    "Swift (iOS development)": "fa-brands fa-apple",
+    "Dart (Flutter)": "fa-brands fa-google"
+};
+
+const iconClass = icons[course] || "fa-solid fa-book-open"; // Default icon
+
+card.innerHTML =  `<i class="${iconClass} course-icon"></i>
+    <h3>${course}</h3>`;
                 container.appendChild(card);
             });
         } else {
@@ -92,5 +125,6 @@
      <footer>
         <p>&copy; 2025 OpenLearn Hub</p>
      </footer>
+     <script src="switcher.js"></script>
 </body>
 </html>

@@ -41,12 +41,15 @@
     <section class="courses">
         <h2>Pick a <span class="italic">course</span> to get <span class="purple">started!</span></h2>
         <div class="course-buttons">
-            <a href="tech.html" class="course-btn tech">
-            <i class="fa-solid fa-laptop-code"></i> Tech & Programming</a>
-            <a href="business.html" class="course-btn business">
-            <i class="fa-solid fa-money-bill-wave"></i>Business & Finance</a>
-            <a href="languages.html" class="course-btn languages">
-                <i class="fa-solid fa-language"></i>Languages</a>
+            <a href="subcourse.html" class="course-btn tech" onclick="setCategory('Tech & Programming')">
+                <i class="fa-solid fa-laptop-code"></i> Tech & Programming
+            </a>
+            <a href="subcourse.html" class="course-btn business" onclick="setCategory('Business & Finance')">
+                <i class="fa-solid fa-money-bill-wave"></i> Business & Finance
+            </a>
+            <a href="subcourse.html" class="course-btn languages" onclick="setCategory('Languages')">
+                <i class="fa-solid fa-language"></i> Languages
+            </a>
         </div>
         <a href="courses.html" class="btn-explore">Explore more →</a>
     </section>
@@ -64,6 +67,10 @@
             <a href="#" class="icon"><i class="fa-brands fa-instagram"></i></a>
         </div>
     </footer>
-
+    <script>
+        function setCategory(category) {
+            localStorage.setItem("selectedCategory", category);
+        }
+    </script>
 </body>
 </html>
