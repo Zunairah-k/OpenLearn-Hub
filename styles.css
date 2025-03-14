@@ -377,9 +377,9 @@ a{
     color:white;
  } 
  /*button colors */
-.tech { background: rgb(204, 242, 66); color: white; }
+.tech { background:#319eeb; color: white; }
 .business { background: rgb(140, 238, 123); color: white; }
-.languages { background: rgb(230, 106, 221); color:white; }
+.languages { background: #ff66c4; color:white; }
 
 /*hover effect */
 .course-btn:hover{
@@ -450,206 +450,210 @@ footer {
 
 /*about us page styles*/
 .about-us nav {
-   position: fixed;
-   top:0;
-   left:0;
-   padding: 15px 40px;
-   width:100%;
-   background: white;
-   box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-   z-index: 100;
-}
-.about-us header {
-    padding: 0;
-    margin: 0;
-}
-.about-container {
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column; /* Stacks items vertically(mobile) */
-    align-items: center; 
-    text-align: center;
-    justify-content: center; 
-    max-width: 900px; /*better readability*/
-    margin: auto; /*centers content*/
-    padding: 20px 40px; /*adds space inside container*/
-    line-height: 1.6;
-    opacity:0;
-    transform: translateY(20px);
-    animation:fadeIn 0.8s ease-in-out forwards;
-    gap:20px;
-    min-height: 100vh;
-}
-@media (max-width: 768px){
-    .about-container{
-        flex-direction: column; 
-        text-align: center;
-        justify-content: space-between;
-    }
-}
-@keyframes fadeIn {
-    from{
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform:translateY(0);
-    }
-  }
-
-.about-us { 
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    background: #e3f2fd; /*light blue for softer look*/
-    background-size: cover; /* Ensures it covers the full screen */
-    min-height: 100vh; /* Full page height */
-    width: 100%; 
-    padding: 50px 20px;
-    padding-top: 100px;
-}
-.about-page {
-    font-family: 'poppins', sans-serif;
-    color:#333;
-}
-/*adding content box for better readability*/
-.container{
-    flex-grow: 1;
-    text-align: center;
-    max-width: 80%;
-    margin: auto;
+    position: fixed;
+    top:0;
+    left:0;
+    padding: 15px 40px;
+    width:100%;
     background: white;
-    padding: 20px;
-    padding-bottom: 50px;
-    border-radius: 10px;
-    min-height: calc(100vh - 100px);
     box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-}
-.about-us h1,
-.about-us h2 {
-    font-family: 'poppins', sans-serif;
-    font-weight: 700;
-    font-size: 2rem;
-    color: #0d47a1;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-    text-align: center;
-    width:100%;
-}
-p{
-    font-size: 18px;
-    line-height: 1.8; /*adds spacing between lines */
-    color:#333;
-    text-align: center;
-    margin-bottom: 20px;
-}
-p2{
-    font-size: 18px;
-font-style: sans-serif;
-}
-.about-image {
-    position: relative;
-    display: inline-block;
-    max-width: 100%;
-    height:auto;
-}
-.about-image img {
-    max-width: 700px;
-    height: auto;
-    display: block; /* Prevents weird spacing */
-    margin: 0 auto; /* Centers image */
-    box-shadow: 0px 4px 10px rgba(172, 222, 239, 0.7);
-}
-/* Text on Image */
-.image-text {
-    position: absolute;
-    bottom: 5%;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 10px 0px;
-    font-style: 'sans-serif';
-    font-size: 25px;
-    font-weight: bold;
-    width:100%;
-    text-align: center;
-    white-space: normal;
-    line-height: 1.4;
-    word-wrap: break-word;
-}
-
-/* Smarter → Bold & Blue */
-.bold-blue {
-    color: #007bff; /* Blue */
-    font-weight: 900;
-}
-
-/* Stress-Free → Green & Italic */
-.italic-green {
-    color: #28a745; /* Green */
-    font-style: italic;
-}
-.black-text{
-    color:black;
-}
-.about-footer {
-    text-align: center;
-    padding: 15px;
-    background: #2c3e50; /* Dark background */
-    color: white;
-    font-size: 18px;
-    width: 100%;
-    position: relative;
-    margin-top: auto;
-}
-
-/* Ensure images scale properly */
-.about-image img {
-    max-width: 100%;
-    height: auto;
-    display: block; /* Prevents weird spacing */
-    margin: 0 auto; /* Centers image */
-}
-
-/* Fix overlapping text on smaller screens */
-@media (max-width: 768px) {
-    .about-container {
-        flex-direction: column; 
-        text-align: center;
-        padding: 20px; /* Adjust spacing */
-    }
-
-    .about-us h1,
-    .about-us h2 {
-        font-size: 1.5rem; /* Adjusts text size for smaller screens */
-    }
-
-    p {
-        font-size: 16px; /* Slightly smaller font for better readability */
-        line-height: 1.5;
-    }
-
-    .container {
-        max-width: 95%; /* Makes the content fit better */
-        padding: 15px;
-    }
-}
-/* Adjust text size and position for small screens */
-@media (max-width: 768px) {
-    .image-text {
-        font-size: 14px; /* Smaller text for smaller screens */
-        bottom: 5px; /* Moves text up slightly */
-        padding: 3px 8px; /* Adjusts spacing */
-        width: 95%;
-    }
-}
-/* Extra Fix for Small Screens */
-@media (max-width: 400px) {
-    .image-text {
-        bottom: 8%; /* Moves text slightly up */
-        width: 85%; /* Expands text area */
-        font-size: 13px; /* Ensures readability */
-        padding: 5px 8px; /* Adjusts padding */
-    }
-}
-/* Smooth Page Transition-dont move */
+    z-index: 100;
+ }
+ .about-us header {
+     padding: 0;
+     margin: 0;
+ }
+ .about-container {
+     border-radius: 10px;
+     display: flex;
+     flex-direction: column; /* Stacks items vertically(mobile) */
+     align-items: center; 
+     text-align: center;
+     justify-content: center; 
+     max-width: 900px; /*better readability*/
+     margin: auto; /*centers content*/
+     padding: 20px 40px; /*adds space inside container*/
+     line-height: 1.6;
+     opacity:0;
+     transform: translateY(20px);
+     animation:fadeIn 0.8s ease-in-out forwards;
+     gap:20px;
+     min-height: 100vh;
+ }
+ @media (max-width: 768px){
+     .about-container{
+         flex-direction: column; 
+         text-align: center;
+         justify-content: space-between;
+     }
+ }
+ @keyframes fadeIn {
+     from{
+         opacity: 0;
+         transform: translateY(20px);
+     }
+     to {
+         opacity: 1;
+         transform:translateY(0);
+     }
+   }
+ 
+ .about-us { 
+     flex: 1;
+     min-height:100vh;
+     display: flex;
+     flex-direction:column;
+     background: #e3f2fd; /*light blue for softer look*/
+     background-size: cover; /* Ensures it covers the full screen */
+     min-height: 100vh; /* Full page height */
+     width: 100%; 
+     padding: 50px 20px;
+     padding-top: 100px;
+ }
+ 
+ .about-page {
+     font-family: 'poppins', sans-serif;
+     color:#333;
+ }
+ /*adding content box for better readability*/
+ .container{
+     flex:1;
+     flex-grow: 1;
+     text-align: center;
+     max-width: 80%;
+     margin: auto;
+     background: white;
+     padding: 20px;
+     padding-bottom: 50px;
+     border-radius: 10px;
+     min-height: calc(100vh - 100px);
+     box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+ }
+ .about-us h1,
+ .about-us h2 {
+     font-family: 'poppins', sans-serif;
+     font-weight: 700;
+     font-size: 2rem;
+     color: #0d47a1;
+     margin-bottom: 10px;
+     text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+     text-align: center;
+     width:100%;
+ }
+ p{
+     font-size: 18px;
+     line-height: 1.8; /*adds spacing between lines */
+     color:#333;
+     text-align: center;
+     margin-bottom: 20px;
+ }
+ p2{
+     font-size: 18px;
+ font-style: sans-serif;
+ }
+ .about-image {
+     position: relative;
+     display: inline-block;
+     max-width: 100%;
+     height:auto;
+ }
+ .about-image img {
+     max-width: 700px;
+     height: auto;
+     display: block; /* Prevents weird spacing */
+     margin: 0 auto; /* Centers image */
+     box-shadow: 0px 4px 10px rgba(172, 222, 239, 0.7);
+ }
+ /* Text on Image */
+ .image-text {
+     position: absolute;
+     bottom: 5%;
+     left: 50%;
+     transform: translateX(-50%);
+     padding: 10px 0px;
+     font-style: 'sans-serif';
+     font-size: 25px;
+     font-weight: bold;
+     width:100%;
+     text-align: center;
+     white-space: normal;
+     line-height: 1.4;
+     word-wrap: break-word;
+ }
+ 
+ /* Smarter → Bold & Blue */
+ .bold-blue {
+     color: #007bff; /* Blue */
+     font-weight: 900;
+ }
+ 
+ /* Stress-Free → Green & Italic */
+ .italic-green {
+     color: #28a745; /* Green */
+     font-style: italic;
+ }
+ .black-text{
+     color:black;
+ }
+ .about-footer {
+     text-align: center;
+     padding: 15px;
+     background: #2c3e50; /* Dark background */
+     color: white;
+     font-size: 18px;
+     width: 100%;
+     position:relative;
+     margin-top: auto;
+ }
+ 
+ /* Ensure images scale properly */
+ .about-image img {
+     max-width: 100%;
+     height: auto;
+     display: block; /* Prevents weird spacing */
+     margin: 0 auto; /* Centers image */
+ }
+ 
+ /* Fix overlapping text on smaller screens */
+ @media (max-width: 768px) {
+     .about-container {
+         flex-direction: column; 
+         text-align: center;
+         padding: 20px; /* Adjust spacing */
+     }
+ 
+     .about-us h1,
+     .about-us h2 {
+         font-size: 1.5rem; /* Adjusts text size for smaller screens */
+     }
+ 
+     p {
+         font-size: 16px; /* Slightly smaller font for better readability */
+         line-height: 1.5;
+     }
+ 
+     .container {
+         max-width: 95%; /* Makes the content fit better */
+         padding: 15px;
+     }
+ }
+ /* Adjust text size and position for small screens */
+ @media (max-width: 768px) {
+     .image-text {
+         font-size: 14px; /* Smaller text for smaller screens */
+         bottom: 5px; /* Moves text up slightly */
+         padding: 3px 8px; /* Adjusts spacing */
+         width: 95%;
+     }
+ }
+ /* Extra Fix for Small Screens */
+ @media (max-width: 400px) {
+     .image-text {
+         bottom: 8%; /* Moves text slightly up */
+         width: 85%; /* Expands text area */
+         font-size: 13px; /* Ensures readability */
+         padding: 5px 8px; /* Adjusts padding */
+     }
+ }
+ /* Smooth Page Transition-dont move */
+ 
