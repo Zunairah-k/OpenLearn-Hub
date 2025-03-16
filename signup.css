@@ -7,13 +7,16 @@ body {
     height: 100vh;
     background: url('sign-in.jpeg') no-repeat center center/cover;
     margin: 0;
+    padding: 20px;
+    gap: 20px;
 }
 
 /* Sign-Up Container */
 .signup-container {
     background: rgba(255, 255, 255, 0.8);
     padding: 30px;
-    border-radius: 15px;
+    margin: 20px auto;
+    border-radius: 25px;
     width: 350px;
     text-align: center;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -103,6 +106,8 @@ button:hover {
     background: white;
     cursor: pointer;
     transition: 0.3s;
+    color: rgb(0, 62, 113);
+
 }
 
 .google-btn:hover{
@@ -114,4 +119,15 @@ button:hover {
     margin: 10px 0;
     font-size: 14px;
     color: #666;
+}
+@media (min-width: 1000px) and (max-width: 1400px) {  /* Target Nest Hub & similar sizes */
+    .signup-container {
+        max-width: 350px; /* Prevent stretching */
+        padding: 30px;
+        margin: 50px auto; /* Force spacing */
+    }
+
+    body {
+        padding: 50px; /* Ensures background has space */
+    }
 }
