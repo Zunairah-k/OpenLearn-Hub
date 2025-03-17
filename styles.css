@@ -71,6 +71,7 @@ header {
     right:20px;
     top:20px;
     padding: 10px;
+    border: none;
     border-radius: 5px;
     z-index: 101;
 }
@@ -144,8 +145,18 @@ nav ul {
     }
     
     nav ul.show {
-        display: flex; /* Show menu when toggled */
-    }
+            display: flex; /* Show menu when toggled */
+            flex-direction: column;
+            position: absolute;
+            top: 70px;
+            right: 0;
+            background: white;
+            width: 200px;
+            text-align: center;
+            padding: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
     
 
 nav ul li a {
@@ -240,17 +251,20 @@ nav ul a:hover {
 
     nav{
         position: absolute;
-        top: 60px;
+        top: 70px;
         right: 0;
         background: white;
-        width: 100%;
+        width: 200px;
         text-align: center;
+        border-radius: 10px;
         display: none; /* Hide by default */
     }
 
     nav ul {
-        display: none; /* Hide menu initially */
+        display: flex; /* Hide menu initially */
         flex-direction: column;
+        gap: 10px;
+        padding: 10px;
         background: white;
         position: absolute;
         top: 60px;
@@ -258,6 +272,10 @@ nav ul a:hover {
         width: 200px;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         border-radius: 10px;
+    }
+
+    nav.show{
+        display: block;
     }
 
     nav ul.show {
