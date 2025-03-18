@@ -15,75 +15,35 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 15px 2%;
     background: white;
-    position: relative;/*it was sticky before*/
+    box-shadow:0px 4px 10px rgba(0, 0, 0, 0.1) ;
+    position: sticky;
     top: 0;
-    width: 100%;
     z-index: 1000;
+    width: 100%;
 }
-
 .logo img {
-    height:80px;
-    width: 80px;
+    height:65px;
+    width: 65px;
     border-radius: 50%;
 }
 
 .search-box {
+    display: flex;
+    align-items: center;
     width: 500px;
     max-width: 100%;/*for all screen sizes*/
     height:70px;
-    width: 70px;
-    border-radius: 50%;
 }
+
 .logo{
-    flex:1;
-}
-
-/*Align logo, menu, and search bar in a row */
-.header-left {
     display: flex;
     align-items: center;
-    gap: 15px; /* Adds space between elements */
-}
-
-/* Center section: Search Bar 
-.header-center {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
-
-/* Right section: Navigation *
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}*/
-
-
-.menu-toggle {
-    font-size: 24px;
-    cursor: pointer;
-    color: black;
-    background: #444;
-    position: absolute;
-    right:20px;
-    top:20px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    z-index: 101;
-}
-
-.menu{
-    display: flex;
-    list-style: none;
-    gap: 20px;
-}
-
-.header-left .menu-toggle {
-    order: 2; /* Menu appears after logo */
+    justify-content: flex-start;
+    margin-right: auto;
+    margin-left: 0;
+    padding-left: 0;
 }
 
 .search-container {
@@ -93,14 +53,15 @@ header {
 }
 
 .search-box {
-    flex:1;
-    width: 60%;
+    flex-grow: 1;
+    width: 350px;
     max-width: 400px;/*for all screen sizes*/
     display: flex;
     align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 25px;
-    padding: 8px 13px;
+    justify-content: center;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    padding: 5px 10px;
     background: white;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /*soft shadow*/
     transition: box-shadow 0.3s ease;
@@ -109,8 +70,9 @@ header {
 .search-box input {
     border:none;
     outline: none;
-    padding: 10px;
-    flex: 2;  
+    background: none;
+    padding: 5px;
+    flex: 1;
     font-size: 16px;
 }
 .search-box input::placeholder{
@@ -130,84 +92,46 @@ header {
 }
 
 nav{
-    flex:1;
+    margin-left: auto;
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: space-between;
 }
 
-nav ul {
+    nav ul {
     list-style: none;
-    display: none; /*keeps links in row*/
-    /*margin-right:20px;*/
-    gap: 40px;
+    display: flex;
     align-items: center;
+    justify-content: flex-end;
+    gap: 35px;
+    margin-right: 50px;
+}
 
-    }
-    
-    nav ul.show {
-            display: flex; /* Show menu when toggled */
-            flex-direction: column;
-            position: absolute;
-            top: 70px;
-            right: 0;
-            background: white;
-            width: 200px;
-            text-align: center;
-            padding: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-    
+nav ul li {
+    display: flex;
+    align-items: center;
+}
 
 nav ul li a {
     text-decoration: none;
-    color: black;
-    font-weight: bold;
-    padding:10px;
-}
-nav ul a:hover {
-    color:#6202ac;
+    color: #333;
+    font-weight: 500;
+    font-size: 17px;
+    transition: color 0.3s ease-in-out;
 }
 
-/* Hide Nav Initially */
-.nav-links {
-    list-style: none;
-    display: none;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    background: #222;
-    text-align: center;
-    padding:10px 0;
-    z-index: 100;
-}
-
-.nav-links li {
-    padding: 10px 0;
-}
-
-.nav-links li a {
-    text-decoration: none;
-    color: white;
-    display: block;
-    padding: 10px;
-}
-
-/* Show menu when 'show' class is added */
-.nav-links.show {
-    display: block;
-}
+nav ul li a:hover {
+    color: #ff6600;}
 
    /* Sign In Button */
    .btn-signin {
     background: linear-gradient(90deg, #fdeb85, #f8a4d8); /* Gradient Colors */
     color: white; /* Text Color */
-    font-weight: bold; /* Bold Text */
-    padding: 8px 16px; /* Button Padding */
+    font-weight: bold;
+    padding: 8px 16px;
     border-radius: 20px; /* Rounded Edges */
-    border: none; /* No Border */
-    cursor: pointer; /* Pointer Cursor */
+    border: none; 
+    cursor: pointer; 
     display: inline-flex; /* Aligns Icon with Text */
     align-items: center; /* Centers Content */
     gap: 5px; /* Spacing between text and icon */
@@ -218,25 +142,8 @@ nav ul a:hover {
     header{
         flex-wrap: wrap;
         justify-content: space-between;
-    /* padding: 10px;*/
+    /* padding: 15px 2%;*/
     }
-    .header-left {
-        flex: 1;
-        display: flex;
-        align-items: center;
-    }
-
-    .header-center {
-        order: 2; /* Ensures search bar stays in the middle */
-        flex: 1;
-        display: flex;
-        justify-content: center;
-    }
-
-    .header-right {
-        order: 3; /* Moves navigation to the right */
-    }
-
     .logo img {
         height: 50px;
         width: 50px;
@@ -292,33 +199,6 @@ nav ul a:hover {
         padding: 10px;
     }
 
-    /* Hamburger Menu */
-    .menu-toggle {
-        font-size: 24px;
-        cursor: pointer;
-        color: black;
-        background: none;
-        padding: 10px;
-        border-radius: 5px;
-    }
-    .header-left{
-        flex:1;
-    }
-
-    .menu {
-        display: block;
-        padding: 10px;
-    }
-
-    .menu li {
-        padding: 10px;
-        border-bottom: 1px solid #ddd;
-    }
-
-    .menu.show {
-        display: block;
-    }
-
     .nav-links {
         display: flex;
         position: static;
@@ -334,13 +214,6 @@ nav ul a:hover {
 @media screen and (max-width: 480px) {
     .search-box {
         max-width: 250px;
-    }
-}
-
-/* Hide menu toggle icon on large screens */
-@media (min-width: 769px) {
-    .menu-toggle {
-        display: none;
     }
 }
 
