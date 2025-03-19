@@ -77,6 +77,18 @@
             localStorage.setItem("selectedCategory", category);
         }
     </script>
+<<<<<<< HEAD
      <script src="index.js"></script>
+=======
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+    
+        console.log("✅ Firebase SDK Loaded!");
+    </script>
+    <script type="module" src="firebase.js"></script>
+    <script type="module" src="script.js"></script>
+>>>>>>> ca49971 (modify files, set up Firebase Auth & Firestore, verify intialization)
 </body>
 </html>
