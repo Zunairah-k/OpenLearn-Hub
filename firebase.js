@@ -9,7 +9,7 @@ const firebaseConfig = {
     apiKey: "AIzaSyDODk8Pq3lbgeEhdQfbtCVJbWYqapQxad4",
     authDomain: "openlearn-hub.firebaseapp.com",
     projectId: "openlearn-hub",
-    storageBucket: "openlearn-hub.firebasestorage.app",
+    storageBucket: "openlearn-hub.appspot.com",
     messagingSenderId: "916886893773",
     appId: "1:916886893773:web:e47d4088792b5af8212584",
     measurementId: "G-284K0V9YQX"
@@ -19,20 +19,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-
-/* Export Firebase modules
-export { auth, db, signInWithEmailAndPassword };
-
-console.log("Firebase initialized:", app);
-console.log("Auth instance:", auth);
-console.log("Firestore instance:", db);
-
-window.auth = auth;
-window.db = db;
-
-window.auth = auth;
-window.db = db;
-window.signInWithEmailAndPassword = signInWithEmailAndPassword;*/
 
 // Attach to window only after DOM is ready
 window.onload = () => {

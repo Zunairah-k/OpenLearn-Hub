@@ -128,8 +128,12 @@ nav ul li a {
 }
 
 nav ul li a:hover {
+<<<<<<< Updated upstream
     color: #ff6600;
 }
+=======
+    color: #ae2222;}
+>>>>>>> Stashed changes
 
    /* Sign In Button */
    .btn-signin {

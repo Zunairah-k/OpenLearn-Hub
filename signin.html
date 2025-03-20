@@ -15,12 +15,15 @@
             <form id="loginForm">
                 <div class="input-group">
                     <span class="icon"><i class="fa-solid fa-user"></i></span>
-                    <input type="text" id="username" placeholder="Username or Email" required>
+                    <input type="text" id="email" placeholder="Email Address" required>
                   </div>
                   
                   <div class="input-group">
                     <span class="icon"><i class="fa-solid fa-lock"></i></span>
-                    <input type="password" id="password" placeholder="Password" required>
+                    <input type="password" id="password" class="password-input" placeholder="Password" required>
+                    <span class="toggle-password">
+                        <i class="fa-solid fa-eye-slash"></i>
+                    </span> 
                   </div>
                   
                 <a href="#" class="forgot-password">Forgot password?</a>
@@ -30,5 +33,7 @@
         </div>
     </div>
     <script type="module" src="script.js"></script>
+    <script type="module"
+    src ="signin.js"></script>
 </body>
 </html>

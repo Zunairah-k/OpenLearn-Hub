@@ -63,7 +63,23 @@ body {
     color: #4a90e2;
     text-decoration: none;
 }
-
+/*show password*/
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    padding-right: 40px;
+}
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: #555;
+}
 /* Sign-Up Button */
 button {
     width: 80%;

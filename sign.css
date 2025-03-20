@@ -198,7 +198,23 @@ p a:hover {
 .forgot-password:hover {
     text-decoration: underline;
 }
-
+/*show password*/
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    padding-right: 40px;
+}
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: #555;
+}
 /* Login Button */
 .login-btn {
     background: linear-gradient(to right, #6a11cb, #2575fc);
@@ -237,4 +253,4 @@ p a:hover {
         background-color: rgb(147, 197, 255);   /* Adds background in case of gaps */
     }
 } 
-/* Smooth Page Transition-dont move */
+
