@@ -18,7 +18,7 @@ header {
     padding: 15px 2%;
     background: white;
     box-shadow:0px 4px 10px rgba(0, 0, 0, 0.1) ;
-    position: sticky;
+    position: relative;
     top: 0;
     z-index: 1000;
     width: 100%;
@@ -91,6 +91,13 @@ header {
     padding: 5px 10px;
 }
 
+.menu-toggle{
+    font-size: 30px;
+    cursor: pointer;
+    display:none;
+    margin-right: 15px;
+}
+
 nav{
     margin-left: auto;
     display: flex;
@@ -115,13 +122,14 @@ nav ul li {
 nav ul li a {
     text-decoration: none;
     color: #333;
-    font-weight: 500;
+    font-weight: bold;
     font-size: 17px;
     transition: color 0.3s ease-in-out;
 }
 
 nav ul li a:hover {
-    color: #ff6600;}
+    color: #ff6600;
+}
 
    /* Sign In Button */
    .btn-signin {
@@ -156,6 +164,10 @@ nav ul li a:hover {
         flex: 2;
     }
 
+    .menu-toggle{
+        display: block;
+    }
+
     nav{
         position: absolute;
         top: 70px;
@@ -163,26 +175,28 @@ nav ul li a:hover {
         background: white;
         width: 200px;
         text-align: center;
-        border-radius: 10px;
+        border-radius: 5px;
         display: none; /* Hide by default */
+        flex-direction: column;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     }
 
     nav ul {
-        display: flex; /* Hide menu initially */
         flex-direction: column;
+        text-align: center;
         gap: 10px;
         padding: 10px;
         background: white;
         position: absolute;
         top: 60px;
         right: 0;
-        width: 200px;
+        width: 100%;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         border-radius: 10px;
     }
 
     nav.show{
-        display: block;
+        display: flex;
     }
 
     nav ul.show {
@@ -483,7 +497,7 @@ footer {
      min-height: 100vh; /* Full page height */
      width: 100%; 
      padding: 50px 20px;
-     padding-top: 100px;
+     padding-top: 140px;
  }
  
  .about-page {
@@ -596,7 +610,9 @@ footer {
          text-align: center;
          padding: 20px; /* Adjust spacing */
      }
- 
+ .about-us{
+    padding-top: 80px;
+ }
      .about-us h1,
      .about-us h2 {
          font-size: 1.5rem; /* Adjusts text size for smaller screens */
@@ -610,6 +626,17 @@ footer {
      .container {
          max-width: 95%; /* Makes the content fit better */
          padding: 15px;
+     }
+
+     nav ul{
+        display: block !important;
+        position: relative;
+        background: white;
+     }
+
+     about-us nav ul li{
+        display: block;
+        margin: 10px 0;
      }
  }
  /* Adjust text size and position for small screens */

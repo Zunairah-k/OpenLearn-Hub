@@ -14,19 +14,18 @@
 
     <!-- Navbar -->
     <header>
-       <!-- <div class="header-left">-->
         <div class="logo">
             <img src="logo.png.jpeg" alt="OpenLearn Hub">
         </div>
-        <!--<div class="menu-toggle">
+        <div class="menu-toggle" onclick="toggleMenu()">
             <i class="fa-solid fa-bars"></i>  <!-- Hamburger Icon -->
-       <!-- </div>
-    </div>-->
+        </div>
+
         <div class="search-box">
             <input type="text" placeholder="Search...">
             <button><i class="fa-solid fa-magnifying-glass"></i></button> <!-- Search Icon -->
         </div>
-        <nav>
+        <nav id="nav-menu">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
@@ -76,7 +75,11 @@
         function setCategory(category) {
             localStorage.setItem("selectedCategory", category);
         }
+</script>
+<script>
+        function toggleMenu() {
+            document.getElementById("nav-menu").classList.toggle("show");
+        }
     </script>
-     <script src="index.js"></script>
 </body>
 </html>
