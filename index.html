@@ -22,8 +22,14 @@
         </div>
 
         <div class="search-box">
-            <input type="text" placeholder="Search...">
-            <button><i class="fa-solid fa-magnifying-glass"></i></button> <!-- Search Icon -->
+            <button class="searchButton">
+                <i class="fas fa-search search-icon"></i> <!-- Magnifying Glass -->
+            </button>
+            <input type="text" id="searchInput" placeholder="Search courses..." />
+           <!-- <button><i class="fa-solid fa-magnifying-glass"></i></button> -->
+            <button id="micButton">
+                <i class="fas fa-microphone"></i>
+            </button>
         </div>
         <nav id="nav-menu">
             <ul>
@@ -89,6 +95,7 @@
     
         console.log("✅ Firebase SDK Loaded!");
     </script>
+    <script src="speechsearch.js" defer></script>
     <script type="module" src="firebase.js"></script>
     <script type="module" src="script.js"></script>
 </body>
