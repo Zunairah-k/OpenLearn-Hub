@@ -100,7 +100,11 @@ header {
     background: #555;
     margin-left: 10px;
 }
-
+.searchButton:focus {
+    outline: none;
+    box-shadow: none;
+    background-color: transparent;
+  }
 #micButton {
     background: none;
     border: none;

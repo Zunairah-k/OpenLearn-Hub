@@ -26,16 +26,34 @@
             <input type="text" id="search" placeholder="Search">
             <button id="search-btn"><i class="fa-solid fa-search"></i></button>
         </div>
-        <select id="filter-level">
+        <select class="filter-level">
+            <option disabled selected>Levels</option>
             <option value="all">All Levels</option>
             <option value="beginner">Beginner</option>
             <option value="intermediate">Intermediate</option>
             <option value="advanced">Advanced</option>
         </select>
+      <!-- Language Filter -->
+<select class="filter-level">
+    <option disabled selected>Language</option> <!-- placeholder -->
+    <option value="english">English</option>
+    <option value="hindi">Hindi</option>
+  </select>
+  
+  <!-- Duration Filter -->
+  <select class="filter-level">
+    <option disabled selected>Duration</option> <!-- placeholder -->
+    <option value="short">Short </option>
+    <option value="medium">Medium </option>
+    <option value="long">Long </option>
+  </select>
+</div>
     </div>
 
     <!-- Sub-Courses Grid -->
     <div id="sub-courses-container" class="sub-course-grid"></div>
+    <!-- Video Display Area -->
+<div id="videoContainer"></div>
 
     <script>
         // Retrieve selected category from localStorage
@@ -77,10 +95,9 @@
                 "Dart (Flutter)"
             ]
         };
-
-        // Get the sub-course container
-        const container = document.getElementById("sub-courses-container");
-
+ // Get the sub-course container
+ const container = document.getElementById("sub-courses-container");
+ 
         // Populate sub-course list based on selected category
         if (selectedCategory && subCourses[selectedCategory]) {
             subCourses[selectedCategory].forEach(course => {
@@ -115,7 +132,7 @@ const iconClass = icons[course] || "fa-solid fa-book-open"; // Default icon
 card.innerHTML =  `<i class="${iconClass} course-icon"></i>
     <h3>${course}</h3>`;
                 container.appendChild(card);
-            });
+});
         } else {
             container.innerHTML = "<p>No courses found.</p>";
         }

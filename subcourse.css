@@ -73,7 +73,7 @@ h1 {
 #search, #filter-level{
 padding:10px;
 width:200px;
-border-radius:5px;
+border-radius:15px;
 transition: all 0.3s ease-in-out;
 }
     
@@ -137,7 +137,7 @@ transition: all 0.3s ease-in-out;
     transform: scale(1.05);
 }
 /* Tech Theme */
-.tech-theme #search, .tech-theme #filter-level {
+.tech-theme #search, .tech-theme .filter-level {
     box-shadow: 0 0 10px rgba(40, 88, 122, 0.4);
     border: 2px solid #28587a; /* Footer color */
 }
@@ -146,7 +146,7 @@ transition: all 0.3s ease-in-out;
 }
 
 /* Business Theme */
-.business-theme #search, .business-theme #filter-level {
+.business-theme #search, .business-theme .filter-level {
     box-shadow: 0 0 10px rgba(45, 114, 32, 0.5);
     border: 2px solid #2d7220;
 }
@@ -155,7 +155,7 @@ transition: all 0.3s ease-in-out;
 }
 
 /* Language Theme */
-.language-theme #search, .language-theme #filter-level {
+.language-theme #search, .language-theme .filter-level {
     box-shadow: 0 0 10px rgba(123, 46, 114, 0.5);
     border: 2px solid #7b2e72;
 }
@@ -164,7 +164,7 @@ transition: all 0.3s ease-in-out;
 }
 
 /* Personal Productivity Theme */
-.personal-theme #search, .personal-theme #filter-level {
+.personal-theme #search, .personal-theme .filter-level {
     box-shadow: 0 0 10px rgba(129, 49, 163, 0.5);
     border: 2px solid #8131a3;
 }
@@ -173,12 +173,47 @@ transition: all 0.3s ease-in-out;
 }
 
 /* Highly Demanded Theme */
-.demanded-theme #search, .demanded-theme #filter-level {
+.demanded-theme #search, .demanded-theme .filter-level {
     box-shadow: 0 0 10px rgba(192, 57, 43, 0.5);
     border: 2px solid #c0392b;
 }
 .demanded-theme .course-card {
     border-left: 6px solid #c0392b;
+}
+
+.filters input[type="text"],
+.filters select,
+.filters button {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    font-size: 16px;
+}
+
+/* For small screens */
+@media (max-width: 768px) {
+    .filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filters .search-container {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .filters input[type="text"] {
+        flex: 1;
+        margin-right: 5px;
+    }
+
+    .filters select {
+        width: 100%;
+    }
+
+    .filters button {
+        padding: 8px 10px;
+    }
 }
 
 .course-card h3{

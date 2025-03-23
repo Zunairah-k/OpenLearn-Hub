@@ -49,37 +49,63 @@ text-align: center;
     align-items: center; /* Centers Content */
     gap: 5px; /* Spacing between text and icon */
   }
-/*style search bar*/
-.search-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-margin-top: 20px;
-margin-left: auto;
-margin-right: auto;
-width: 100%;
-max-width: 500px;
-position: relative;
-}
-.search-container input{
+
+.search-container {
+    position: relative;
     width: 100%;
     max-width: 500px;
-    padding: 12px 45px 12px 15px;
+    margin: 20px auto;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 12px 50px 12px 50px; /* Leave space for both icons */
     border-radius: 25px;
     border: 2px solid #f7cac9;
     font-size: 16px;
     transition: border-color 0.3s ease-in-out;
     outline: none;
 }
-.search-container i{
+
+.searchButton {
     position: absolute;
-    right: 15px;
+    left: 12px;
     top: 50%;
     transform: translateY(-50%);
-    color: #181717;
-    font-size: 18px;
+    background: none;
+    border: none;
+    font-size: 20px;
     cursor: pointer;
+    color: #333;
+    z-index: 2;
+}
+
+#micButton {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #555;
+    z-index: 2;
+}
+
+#micButton:hover {
+    color: #000;
+}
+
+#micButton.listening i {
+    color: red;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
 }
 /*stop border from turning black on click*/
 .search-container input:focus{
@@ -484,7 +510,7 @@ nav button {
     font-size: 30px;
     color: white;
 }
-button:nth-child(1) { background-color: #319eeb; }
+.course-buttons button:nth-child(1) { background-color: #319eeb; }
 button:nth-child(2) { background-color: rgb(140, 238, 123);}
 button:nth-child(3) { background-color: #ff66c4; }
 button:nth-child(4) { background-color: #cb6ce6; }
@@ -539,5 +565,3 @@ button:nth-child(5) { background-color: #ff8f4a; }
     font-size: 14px;
     opacity: 0.7;
 }
-
-/* Smooth Page Transition-dont move */

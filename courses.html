@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Courses - OpenLearn Hub</title>
-    <link rel="stylesheet"
-    href="courses.css">
+    <title>Courses - OpenLearn Hub</title>   
     <link rel="stylesheet" href="courses.css">
     <link rel="stylesheet"
  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -27,9 +25,13 @@
     </header>
 <!-- search bar -->
  <div class="search-container">
-    <input type="text" placeholder="Search for courses...">
-    <i class="fa-solid fa-search"></i>
+    <button class="searchButton">
+        <i class="fas fa-search search-icon"></i> <!-- Magnifying Glass -->
+    </button>
     <input type="text" id="searchInput" placeholder="Search courses..." />
+    <button id="micButton">
+        <i class="fas fa-microphone"></i>
+    </button>
  </div>
 
     <!-- Hero Section -->
@@ -56,12 +58,11 @@
         </div>
     </div>
 </div>
-</section>
 
 
     <!-- Course Categories -->
     <section class="course-buttons">
-        <button class="category-button" data-category="Tech & Programming"><i class="fa-solid fa-laptop-code"!important></i>Tech & Programming</button>
+        <button class="category-button" data-category="Tech & Programming"><i class="fa-solid fa-laptop-code"></i>Tech & Programming</button>
         <button class="category-button" data-category="Business & Finance"><i class="fa-solid fa-chart-line"></i>Business & Finance</button>
         <button class="category-button" data-category="Languages"><i class="fa-solid fa-language"></i>Languages</button>
         <button class="category-button" data-category="Personal Development & Productivity"><i class="fa-solid fa-user-graduate"></i>Personal Development</button>
@@ -101,5 +102,6 @@
         });
     });
 </script>
+<script src="speechsearch.js" defer></script>
 </body>
 </html>
