@@ -1,0 +1,148 @@
+/* Base Styling */
+body {
+    font-family: 'Segoe UI',sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f3f4f6;
+    color: #1e1e2f;
+  }
+  
+  /* Title Styling */
+  #subcourse-title {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #2d2d2d;
+    letter-spacing: 1px;
+  }
+  
+  /* Filter Dropdowns */
+.filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.filters select {
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  transition: all 0.2s ease-in-out;
+  outline: none;
+}
+
+.filters select:hover,
+.filters select:focus {
+  border-color: #007bff;
+  box-shadow: 0 4px 12px rgba(0,123,255,0.15);
+}
+
+  /* Video Grid Layout */
+  #videoContainer, .video-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 20px;
+  }
+  
+  /* Video Card Styling */
+  .video-card {
+    background-color: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    padding: 20px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Hover Effect */
+  .video-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+  
+  /* Thumbnail */
+  .video-thumbnail {
+    width: 100%;
+    height: 100px;
+    border-radius: 10px;
+    cursor: pointer;
+    object-fit: cover;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  }
+  
+  /* Video Info Section */
+  .video-info {
+    margin-top: 12px;
+    text-align: left;
+    width: 100%;
+  }
+  
+  /* Title */
+  .video-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #222;
+    margin: 10px 0 5px;
+  }
+  
+  /* Description */
+  .video-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #444;
+    margin-bottom: 10px;
+  }
+  
+  /* Meta info (level, duration, etc.) */
+  .video-meta {
+    font-size: 0.85rem;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  
+  /* Video Iframe */
+  iframe, .video-frame {
+    width: 100%;
+    height: 220px;
+    margin-top: 12px;
+    border-radius: 10px;
+    display: none; /* hidden by default, shown on click */
+    box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+  }
+  
+  /* Responsive Enhancements */
+  @media (max-width: 768px) {
+    #subcourse-title {
+      font-size: 2.2rem;
+    }
+  
+    .video-card {
+      padding: 14px;
+    }
+  
+    .video-title {
+      font-size: 1.1rem;
+    }
+  
+    .video-description {
+      font-size: 0.9rem;
+    }
+  
+    .video-meta {
+      font-size: 0.8rem;
+
+      .filters {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  }

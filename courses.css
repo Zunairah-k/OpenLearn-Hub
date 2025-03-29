@@ -79,7 +79,6 @@ text-align: center;
     color: #333;
     z-index: 2;
 }
-
 #micButton {
     position: absolute;
     right: 12px;
@@ -185,61 +184,39 @@ nav button {
     padding: 40px 20px;
 }
 
-.banner-container {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    width: 100vw;
+    overflow-x: hidden;
+  }
+  
+  .banner-container {
+    width: 100vw;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
     display: flex;
-    align-items: center;
     justify-content: center;
-    width: 100%;
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-    position: relative;
-}
-/* Banner Section */
-.banner {
-    display: flex;
     align-items: center;
-    justify-content: flex-start; /* Aligns image to left */
+  }
+  .banner {
+    width: 100vw;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .banner img {
     width: 100%;
     height: auto;
-    min-width: 300px;
-    background: url('banner.jpeg') no-repeat left center;
-    background-size: cover; /* Ensures full coverage */
-    padding: 20px; /* Space inside the banner */
-    background: none;
-    position: relative;
-    border-radius: 10px; /* Uncomment if needed */
-}
-
-.banner img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
-
-.banner-text {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    width: 45%;
-    max-width: 400px;
-    text-align: left; 
-    color: black; 
-    font-size: clamp(1rem,2.5vw,2rem); 
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-}
-.banner-text h2 {
-    color: #007bff;
-    font-size: clamp(1.5rem,3vw,2.5rem); /* responsive text size */
-}
-.banner-text p{
-    color:#000;
-    font-size: clamp(1rem,2.5vw,2rem); /* responsive text size */
-}
+    display: block;
+  }
 
 /* Responsive Adjustments */
 @media (max-width: 1024px) {
@@ -251,21 +228,6 @@ nav button {
     .banner-container {
         width: 100%;
         text-align: center;
-    }
-
-    .banner-text {
-        width: 60%;
-        right: 5%;
-    }
-
-    .top-resources-container {
-        width: 100%;
-        text-align: center;
-        margin-top: 20px;
-    }
-
-    .top-resources {
-        max-width: 350px;
     }
 }
 @media (max-width: 768px) {
@@ -283,17 +245,6 @@ nav button {
         justify-content: center;
         align-items: center;
         position: relative;
-    }
-    .banner-text {
-        position: absolute; /* Keeps text inside the image */
-        top: 40%;
-        right: 0;
-        transform: translateY(-50%);
-        width: 70%; /* Adjust so it occupies the right portion */
-        max-width: 100%;
-        text-align: right; /* Keeps text aligned properly */
-        padding: 5px;
-        font-size: clamp(0.8rem, 2vw, 1.5rem);
     }
     .nav-container {
         flex-direction: column;
@@ -317,151 +268,18 @@ nav button {
     .hero {
         flex-direction: column;
     }
-
-    .banner-text h2{
-        font-size: 4.5vw;
-    }
-    .banner-text p {
-        font-size: 3.5vw; /* Ensure paragraph text resizes properly */
-    }
-}
-
-@media (max-width: 480px) {
-    .banner-text {
-        width:85%;
-        right:3%;
-        font-size: 5vw;
-    }
-    .top-resources-container {
-        width: 100%;
-        margin-top: 15px;
-    }
-
-    .top-resources h3 {
-        font-size: 14px;
-    }
-    .banner-text p{
-        font-size: 5vw;
-    }
-
-    .resource-img {
-        width: 50px;
-    }
-    .banner-text h2{
-        font-size:6vw;
-    }
-}
-/* Container for the top resources */
-.top-resources-container {
-    display: flex;
-    justify-content: center; /* Aligns below the image */
-    align-items: center;
-    flex-direction: column;
-    max-width: 800px;
-    width: 100%; /* Aligns vertically with the hero section */
-    margin: 10px auto;
-    padding-bottom: 0px;
-}
-
-/* Styling for the resources box */
-.top-resources {
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 100%;
-    max-width:400px;
-}
-
-/* Heading inside the box */
-.top-resources h3 {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-/* Styling for resource images */
-.resource-icons {
-    display: flex;
-    flex-wrap:wrap;
-    justify-content: center;
-    gap: 15px;
-}
-
-.resource-img {
-    width: 80px; /* Adjust image size */
-    height: auto;
-    border-radius: 10px; /* Optional, adds rounded corners */
-}
-
-/* RESPONSIVENESS */
-@media (max-width: 1024px) {
-    .top-resources-container {
-        position: relative;  /* Change to relative positioning */
-        top: auto;
-        right: auto;
-        transform: none;
-        width: 100%;
-        max-width: 100%;
-        margin-top: 20px;  /* Push it below */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-     }
- 
-     .top-resources {
-         width: 100%;
-         max-width: 350px;
-     }
- }
-@media (max-width:768px) {
-    .top-resources-container {
-        display: block;
-        width: 100%;
-        max-width: 800px;
-        margin:20px auto;
-        padding: 20px;
-    }
-
-    .resource-icons {
-       display: flex;
-       flex-direction: row;
-       flex-wrap: wrap;
-       justify-content: center;
-        gap: 20px;
-    }
-
-    .resource-img {
-        width: 80px;
-    }
 }
 @media (max-width: 600px) {
     .search-container {
         width: 90%;
     }
-
     .search-container input {
         font-size: 14px;
-        padding: 10px 40px 10px 10px;
+        padding: 10px 40px 10px 40px;
     }
 
     .search-container i {
         right: 10px;
-    }
-}
-@media (max-width: 480px) {
-    .top-resources-container {
-        width: 100%; /* Ensures it occupies full width on the smallest screens */
-        margin-top: 15px;
-    }
-
-    .top-resources h3 {
-        font-size: 14px; /* Slightly smaller font size */
-    }
-
-    .resource-img {
-        width: 50px; /* Further reduce image size for very small screens */
     }
 }
 
@@ -564,4 +382,15 @@ button:nth-child(5) { background-color: #ff8f4a; }
     margin-top: 30px;
     font-size: 14px;
     opacity: 0.7;
+}
+.highlighted {
+    outline: 3px solid #000000;
+    border-radius: 10px;
+    transition: outline 0.3s ease-in-out;
+  }
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden; /* prevents accidental horizontal scroll */
 }

@@ -38,26 +38,8 @@
     <section class="hero">
         <div class="banner-container">
             <div class="banner">
-        <img src="banner.jpeg" alt="Learning Banner">
-        <div class="banner-text">
-        <h2>Customise your learning-</h2>
-        <p>Select by course type <br>[PDFs, tutorials, courses] & duration!</p>
-        </div>
-        </div>
-        </div>
+        <img src="bannerr.png" alt="Learning Banner">
     </section>
-
-    <!-- Our Top Resources Section -->
-<div class="top-resources-container">
-    <div class="top-resources">
-        <h3>Our top resources-</h3>
-        <div class="resource-icons">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo3pl_zOXCdfxx2ksowu1H39fbyBpFMdo7Dw&s" alt="Coursera" class="resource-img">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReHxPC-DGRTX_9_vQFhQbAtNNV6ccTxgOnuQ&s" alt="Khan Academy" class="resource-img">
-            <img src="https://logowik.com/content/uploads/images/udemy-new-20212512.jpg" alt="Udemy" class="resource-img">
-        </div>
-    </div>
-</div>
 
 
     <!-- Course Categories -->
@@ -102,6 +84,103 @@
         });
     });
 </script>
+<script>
+    const courseCategories = {
+      "Tech & Programming": [
+        "Full-Stack Web Development",
+        "Data Science & Machine Learning",
+        "AI & Deep Learning",
+        "Cybersecurity & Ethical Hacking",
+        "Blockchain & Web3 Development",
+        "DevOps & Cloud Computing",
+        "Android & iOS App Development"
+      ],
+      "Business & Finance": [
+        "Stock Market & Crypto Trading",
+        "Digital Marketing & SEO",
+        "Entrepreneurship & Startups"
+      ],
+      "Languages": [
+        "English",
+        "Spanish",
+        "Mandarin Chinese",
+        "Russian",
+        "Korean & Japanese"
+      ],
+      "Personal Development & Productivity": [
+        "Public Speaking & Communication Skills",
+        "Time Management & Productivity Hacks",
+        "Freelancing & Side Hustles"
+      ],
+      "Highly Demanded Courses": [
+        "English Speaking & IELTS Preparation",
+        "Swift (iOS development)",
+        "Dart (Flutter)"
+      ]
+    };
+  
+    function performCourseSearch() {
+      const input = document.getElementById("searchInput");
+      const rawSearchTerm = input.value.trim().toLowerCase();
+      if (!rawSearchTerm) return;
+  
+      let foundCategory = null;
+      let foundSubCourse = null;
+  
+      // Check for main category
+      for (const category in courseCategories) {
+        if (category.toLowerCase().includes(rawSearchTerm)) {
+          foundCategory = category;
+          break;
+        }
+      }
+  
+      // Check for sub-course
+      if (!foundCategory) {
+        for (const category in courseCategories) {
+          const match = courseCategories[category].find(course =>
+            course.toLowerCase().includes(rawSearchTerm)
+          );
+          if (match) {
+            foundSubCourse = match;
+            foundCategory = category;
+            break;
+          }
+        }
+      }
+  
+      // Redirect if sub-course is found
+      if (foundSubCourse) {
+        localStorage.setItem("selectedCategory", foundCategory);
+        localStorage.setItem("selectedSubCourse", foundSubCourse);
+        window.location.href = "subcourse.html";
+      }
+      // Scroll to main category if no sub-course
+      else if (foundCategory) {
+        const btns = document.querySelectorAll(".category-button");
+        btns.forEach(btn => {
+          if (btn.getAttribute("data-category") === foundCategory) {
+            btn.scrollIntoView({ behavior: "smooth", block: "center" });
+            btn.classList.add("highlighted");
+            setTimeout(() => btn.classList.remove("highlighted"), 2000);
+          }
+        });
+      } else {
+        alert("Course not found. Try again!");
+      }
+    }
+  
+    // Trigger on Enter key
+    document.getElementById("searchInput").addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {
+        performCourseSearch();
+      }
+    });
+  
+    // Trigger on search icon click
+    document.querySelector(".searchButton").addEventListener("click", performCourseSearch);
+  </script>
+<script src="script.js"></script>
 <script src="speechsearch.js" defer></script>
 </body>
 </html>

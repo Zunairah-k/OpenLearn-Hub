@@ -20,7 +20,7 @@
     <!-- Page Title -->
     <h1 id="page-title"></h1>
 
-    <!-- Filters & Search -->
+    <!-- Filters & Search -->   
     <div class="filters">
         <div class="search-container">
             <input type="text" id="search" placeholder="Search">
@@ -97,7 +97,7 @@
         };
  // Get the sub-course container
  const container = document.getElementById("sub-courses-container");
- 
+
         // Populate sub-course list based on selected category
         if (selectedCategory && subCourses[selectedCategory]) {
             subCourses[selectedCategory].forEach(course => {
@@ -130,14 +130,38 @@
 const iconClass = icons[course] || "fa-solid fa-book-open"; // Default icon
 
 card.innerHTML =  `<i class="${iconClass} course-icon"></i>
-    <h3>${course}</h3>`;
+    <h3>${course}</h3>
+`;
+card.addEventListener("click", () => {
+  const encodedCourse = encodeURIComponent(course);
+  window.location.href = `subcourse-videos.html?name=${encodedCourse}`;
+});
                 container.appendChild(card);
 });
         } else {
             container.innerHTML = "<p>No courses found.</p>";
         }
-    </script>
 
+        function searchCourses() {
+    const query = document.getElementById("search").value.toLowerCase().trim();
+    const cards = document.querySelectorAll(".course-card");
+
+    cards.forEach(card => {
+        const title = card.textContent.toLowerCase();
+        if (title.includes(query)) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+    });
+}
+
+document.getElementById("search-btn").addEventListener("click", searchCourses);
+document.getElementById("search").addEventListener("input", searchCourses);
+document.getElementById("search").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") searchCourses();
+});
+    </script>
     <!-- footer -->
      <footer>
         <p>&copy; 2025 OpenLearn Hub</p>

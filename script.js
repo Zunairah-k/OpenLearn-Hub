@@ -32,8 +32,34 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 function learnNew() {
-    window.location.href = "/courses/random"; // Update with your actual random course URL
-}
+        const courses = [
+          "Full-Stack Web Development",
+          "Data Science & Machine Learning",
+          "AI & Deep Learning",
+          "Cybersecurity & Ethical Hacking",
+          "Blockchain & Web3 Development",
+          "DevOps & Cloud Computing",
+          "Android & iOS App Development",
+          "Stock Market & Crypto Trading",
+          "Digital Marketing & SEO",
+          "Entrepreneurship & Startups",
+          "English",
+          "Spanish",
+          "Mandarin Chinese",
+          "Russian",
+          "Korean & Japanese",
+          "Public Speaking & Communication Skills",
+          "Time Management & Productivity Hacks",
+          "Freelancing & Side Hustles",
+          "English Speaking & IELTS Preparation",
+          "Swift (iOS development)",
+          "Dart (Flutter)"
+        ];
+      
+        const randomCourse = courses[Math.floor(Math.random() * courses.length)];
+        const encoded = encodeURIComponent(randomCourse);
+        window.location.href = `subcourse-videos.html?name=${encoded}`;
+      }
 
 function showMotivation() {
     const quotes = [
@@ -45,8 +71,12 @@ function showMotivation() {
 }
 
 function surpriseMe() {
-    window.location.href = "/courses/trending"; // Update with your trending course URL
+const surpriseCourse = "AI & Deep Learning"; // change it if needed
+const encoded = encodeURIComponent(surpriseCourse);
+window.location.href = `subcourse-videos.html?name=${encoded}`;
 }
+
 window.learnNew = learnNew;
 window.showMotivation = showMotivation;
 window.surpriseMe = surpriseMe;
+

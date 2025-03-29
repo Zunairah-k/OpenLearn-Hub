@@ -1,11 +1,14 @@
 import { auth, db } from "./firebase.js";
 import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
 import { doc, setDoc } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+import { GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
 
 document.addEventListener("DOMContentLoaded", function () {
     const signupForm = document.getElementById("signup-form");
     const togglePasswords = document.querySelectorAll(".toggle-password");
+    const googleSignupBtn = document.getElementById("google-signup");
 
+    //email/password signup
     if (signupForm) {
         signupForm.addEventListener("submit", async function (event) {
             event.preventDefault(); // Prevent form refresh
@@ -20,7 +23,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 alert("Passwords do not match!");
                 return;
             }
-
+            if (fullName.length < 3 || username.length < 3) {
+                alert("Please enter a valid full name and username.");
+                return;
+            }
             try {
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                 const user = userCredential.user;
@@ -35,16 +41,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 console.log("User signed up:", user);
                 alert("Signup successful! Redirecting to login...");
-                window.location.href = "dashboard.html";
+                window.location.href = "signin.html";
             } catch (error) {
                 console.error("Signup failed:", error.message);
                 alert("Signup failed: " + error.message);
             }
         });
     }
+    //toggle password visibility
     togglePasswords.forEach(toggle => {
         toggle.addEventListener("click", function () {
-            const passwordField = this.previousElementSibling; // Selects the input field before the eye icon
+            const inputGroup = this.closest(".input-group");
+            const passwordField = inputGroup.querySelector("input");
             const icon = this.querySelector("i");
 
             if (passwordField.type === "password") {
@@ -58,12 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
-});
-import { GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
-
-document.addEventListener("DOMContentLoaded", function () {
-    const googleSignupBtn = document.getElementById("google-signup");
-
+    //google sign-in
     if (googleSignupBtn) {
         googleSignupBtn.addEventListener("click", function () {
             const provider = new GoogleAuthProvider();

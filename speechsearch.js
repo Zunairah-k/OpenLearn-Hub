@@ -18,14 +18,8 @@ if (SpeechRecognition && micButton && searchInput) {
         searchInput.value = transcript; // Insert into input field
         recognition.stop(); // Stop recognition
         micButton.classList.remove("listening"); // Remove visual effect
-    };
-
-    recognition.onerror = (event) => {
-        console.error("Speech recognition error:", event.error);
-        recognition.stop();
-        micButton.classList.remove("listening");
-    };
-
+performSearch();
+};
     recognition.onend = () => {
         micButton.classList.remove("listening"); // Ensure visual effect is removed
     };
@@ -36,45 +30,19 @@ if (SpeechRecognition && micButton && searchInput) {
         });
     }
 }
-/*search qeuery*/
-document.addEventListener("DOMContentLoaded", () => {
-    const searchInput = document.getElementById("searchInput");
 
-    if (searchInput) {
+// Search Button & Enter Key Trigger
+document.addEventListener("DOMContentLoaded", () => {
+    const searchButton = document.querySelector(".searchButton");
+
+    if (searchButton && searchInput) {
+        searchButton.addEventListener("click", performSearch);
+
         searchInput.addEventListener("keypress", (event) => {
             if (event.key === "Enter") {
-                event.preventDefault(); // Prevent form submission
-                const query = searchInput.value.trim();
-
-                if (query) {
-                    console.log("Search Query:", query); // Check in console if it logs
-                } else {
-                    console.log("Empty search query");
-                }
+                event.preventDefault();
+                performSearch();
             }
         });
     }
-});
-/*search button */
-document.addEventListener("DOMContentLoaded", function () {
-    const searchButton = document.querySelector(".searchButton");
-    const searchInput = document.getElementById("searchInput");
-
-    searchButton.addEventListener("click", function () {
-        let query = searchInput.value.trim(); // Get input value and remove spaces
-
-        if (query !== "") {
-            console.log("Searching for:", query); // Debugging: Shows search query in console
-            alert(`Searching for: ${query}`); // Replace with actual search function
-        } else {
-            alert("Please enter a search term.");
-        }
-    });
-
-    // Pressing 'Enter' in the input should also trigger the search
-    searchInput.addEventListener("keypress", function (event) {
-        if (event.key === "Enter") {
-            searchButton.click();
-        }
-    });
 });

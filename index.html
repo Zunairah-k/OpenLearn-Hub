@@ -17,10 +17,12 @@
         <div class="logo">
             <img src="logo.png.jpeg" alt="OpenLearn Hub">
         </div>
-        <div class="menu-toggle" onclick="toggleMenu()">
-            <i class="fa-solid fa-bars"></i>  <!-- Hamburger Icon -->
-        </div>
-
+        <div class="mobile-nav-wrapper">
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>  <!-- Hamburger Icon -->
+            </div>
+            </div>
+            
         <div class="search-box">
             <button class="searchButton">
                 <i class="fas fa-search search-icon"></i> <!-- Magnifying Glass -->
@@ -30,6 +32,7 @@
                 <i class="fas fa-microphone"></i>
             </button>
         </div>
+
         <nav id="nav-menu">
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -38,6 +41,7 @@
                 <li><a href="signin.html" class="btn-signin">SIGN IN</a></li>
             </ul>
         </nav>
+
     </header>
     <!-- Hero Section -->
     <section class="hero">
@@ -94,6 +98,88 @@
     
         console.log("✅ Firebase SDK Loaded!");
     </script>
+    <script>
+        const subCourses = {
+          "Tech & Programming": [
+            "Full Stack Web Development",
+            "Data Science & Machine Learning",
+            "AI & Deep Learning",
+            "Cybersecurity & Ethical Hacking",
+            "Blockchain & Web3 Development",
+            "DevOps & Cloud Computing",
+            "Android and iOS App Development",
+            "Swift",
+            "Flutter"
+          ],
+          "Business & Finance": [
+            "Stock Market & Crypto Trading",
+            "Digital Marketing & SEO",
+            "Entrepreneurship & Startups"
+          ],
+          "Languages": [
+            "English",
+            "Spanish",
+            "Mandarin Chinese",
+            "Russian",
+            "Korean",
+            "Japanese"
+          ],
+          "Personal Development": [
+            "Public Speaking & Communication Skills",
+            "Time Management & Productivity Hacks",
+            "Freelancing & Side Hustles"
+          ],
+          "Highly Demanded Courses": [
+            "English Speaking & IELTS Preparation",
+            "Swift (iOS Development)",
+            "Flutter (Dart)"
+          ]
+        };
+      </script>
+      <script>
+ function performSearch() {
+    const input = document.getElementById("searchInput");
+    const rawSearchTerm = input.value.trim().toLowerCase();
+    if (!rawSearchTerm) return;
+
+    let foundMain = null;
+    let foundSub = null;
+
+    // Check for main category
+    for (const category in subCourses) {
+        if (category.toLowerCase().includes(rawSearchTerm)) {
+            foundMain = category;
+            break;
+        }
+    }
+
+    // Check for sub-course
+    if (!foundMain) {
+        for (const category in subCourses) {
+            const match = subCourses[category].find(course =>
+                course.toLowerCase().includes(rawSearchTerm)
+            );
+            if (match) {
+                foundSub = match;
+                foundMain = category;
+                break;
+            }
+        }
+    }
+
+    // Redirect logic
+    if (foundSub) {
+        localStorage.setItem("selectedCategory", foundMain);
+        localStorage.setItem("selectedSubCourse", foundSub);
+        window.location.href = "subcourse.html";
+    } else if (foundMain) {
+        localStorage.setItem("selectedCategory", foundMain);
+        window.location.href = "courses.html";
+    } else {
+        alert("Course not found. Please try a different search.");
+    }
+}
+      </script>
     <script src="speechsearch.js" defer></script>
     <script type="module" src="firebase.js"></script>
     <script type="module" src="script.js"></script>
