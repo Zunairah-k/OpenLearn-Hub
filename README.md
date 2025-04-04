@@ -31,7 +31,7 @@ OpenLearn Hub is a free, student-built learning platform offering curated educat
 
 ## Live MVP
 
-[OpenLearn Hub - Live Demo](openlearn-hub.netlify.app)
+[OpenLearn Hub - Live Demo](https://openlearn-hub.netlify.app)
 ## Disclaimer
 
 This is an MVP version intended for hackathon and educational purposes. Contributions are currently not open.
