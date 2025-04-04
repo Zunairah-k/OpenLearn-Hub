@@ -8,7 +8,7 @@ OpenLearn Hub is a free, student-built learning platform offering curated educat
 ## Key Features
 
 - **Course Categories:** Tech, Business, Languages, Personal Development, and more  
-- **Advanced Filtering:** Search courses by duration, format, level, source, and language  
+- **Advanced Filtering:** Search courses by duration, format, level, and language  
 - **Authentication:** Firebase-based user auth with email and Google Sign-In  
 - **Video Listings:** Static YouTube course recommendations (dynamic API planned)  
 - **AI Chatbot:** Gemini-integrated assistant for personalized learning guidance  
@@ -32,6 +32,7 @@ OpenLearn Hub is a free, student-built learning platform offering curated educat
 ## Live MVP
 
 [OpenLearn Hub - Live Demo](https://openlearn-hub.netlify.app)
+
 ## Disclaimer
 
-This is an MVP version intended for hackathon and educational purposes. Contributions are currently not open.
+This project is a functional MVP built by us as students for a hackathon challenge. It's fully working with real features like authentication and AI-based recommendations, but still a work in progress. We plan to improve responsiveness, scalability, and add dynamic content in future updates.
