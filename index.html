@@ -54,13 +54,13 @@
     <section class="courses">
         <h2>Pick a <span class="italic">course</span> to get <span class="purple">started!</span></h2>
         <div class="course-buttons">
-            <a href="subcourse.html" class="course-btn tech" onclick="setCategory('Tech & Programming')">
+            <a href="subcourse.html" class="course-btn tech" onclick="setCategoryAndGo('Tech & Programming')">
                 <i class="fa-solid fa-laptop-code"></i> Tech & Programming
             </a>
-            <a href="subcourse.html" class="course-btn business" onclick="setCategory('Business & Finance')">
+            <a href="subcourse.html" class="course-btn business" onclick="setCategoryAndGo('Business & Finance')">
                 <i class="fa-solid fa-chart-line"></i> Business & Finance
             </a>
-            <a href="subcourse.html" class="course-btn languages" onclick="setCategory('Languages')">
+            <a href="subcourse.html" class="course-btn languages" onclick="setCategoryAndGo('Languages')">
                 <i class="fa-solid fa-language"></i> Languages
             </a>
         </div>
@@ -98,6 +98,12 @@
     
         console.log("✅ Firebase SDK Loaded!");
     </script>
+    <script>
+        function setCategoryAndGo(category) {
+          localStorage.setItem("selectedCategory", category);
+          window.location.href = "subcourse.html";
+        }
+      </script>
     <script>
         const subCourses = {
           "Tech & Programming": [
