@@ -39,17 +39,40 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('logoutPopup').classList.add('hidden');
   });
 });
+
 document.querySelectorAll('.sidebar-nav li[data-section]').forEach(item => {
   item.addEventListener('click', () => {
-    // Remove active class from all sections and sidebar items
-    document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-    document.querySelectorAll('.sidebar-nav li').forEach(nav => nav.classList.remove('active'));
-
-    // Add active to clicked nav item
-    item.classList.add('active');
-
-    // Show corresponding section
     const sectionId = item.getAttribute('data-section');
-    document.getElementById(sectionId).classList.add('active');
+
+    if (sectionId === 'progress' || sectionId === 'goals') {
+      const dashboardSection = document.getElementById('dashboard');
+      const headings = dashboardSection.querySelectorAll('h3.sub-heading');
+
+      let targetHeading = null;
+      headings.forEach(h => {
+        if (h.textContent.trim().toLowerCase() === sectionId) {
+          targetHeading = h;
+        }
+      });
+
+      if (targetHeading) {
+        targetHeading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        targetHeading.classList.add('highlighted');
+
+        setTimeout(() => {
+          targetHeading.classList.remove('highlighted');
+        }, 2000);
+      }
+
+      document.querySelectorAll('.sidebar-nav li').forEach(nav => nav.classList.remove('active'));
+      item.classList.add('active');
+    } else {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+      document.querySelectorAll('.sidebar-nav li').forEach(nav => nav.classList.remove('active'));
+
+      document.getElementById(sectionId).classList.add('active');
+      item.classList.add('active');
+    }
   });
 });

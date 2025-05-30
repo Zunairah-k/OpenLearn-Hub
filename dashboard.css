@@ -207,3 +207,79 @@ padding: 20px;
     #cancelLogout:hover {
       background: #64748b;
     }
+/* Cards container shared styling */
+.progress-cards .card,
+.goals-cards .card {
+  background: linear-gradient(145deg, #ffffff, #f2f6fa);
+  color: #1f2d3d;
+  padding: 2.5rem 3rem;
+  border-radius: 20px;
+  min-width: 320px;
+  min-height: 200px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: 2px solid rgba(0, 123, 255, 0.15);  /* <== classy border */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  cursor: default;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover glow + border pop */
+.progress-cards .card:hover,
+.goals-cards .card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  border-color: rgba(0, 123, 255, 0.4); /* stronger border on hover */
+}
+
+/* Optional shimmer effect */
+.progress-cards .card::before,
+.goals-cards .card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-20deg);
+  transition: left 0.6s ease-in-out;
+}
+
+.progress-cards .card:hover::before,
+.goals-cards .card:hover::before {
+  left: 130%;
+}
+
+/* Highlighted glow effect */
+.highlighted {
+  animation: highlight-glow 1.2s ease-in-out 2;
+}
+
+@keyframes highlight-glow {
+  0% {
+    box-shadow: 0 0 0px rgba(0, 123, 255, 0);
+    border-color: transparent;
+  }
+  50% {
+    box-shadow: 0 0 20px 5px rgba(0, 123, 255, 0.6);
+    border-color: #007bff;
+  }
+  100% {
+    box-shadow: 0 0 0px rgba(0, 123, 255, 0);
+    border-color: rgba(0, 123, 255, 0.15);
+  }
+}

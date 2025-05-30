@@ -16,15 +16,15 @@
       <div class="sidebar-header">
         <h2>OpenLearn Hub</h2>
       </div>
-      <ul class="sidebar-nav">
-        <li class="active" data-section="dashboard"><i class="fas fa-home"></i> Dashboard</li>
-        <li data-section="courses"><i class="fas fa-play"></i> Courses</li>
-        <li data-section="progress"><i class="fas fa-chart-line"></i> Progress</li>
-        <li data-section="goals"><i class="fas fa-bullseye"></i> Goals</li>
-        <li data-section="profile"><i class="fas fa-user"></i> Profile</li>
-        <li data-section="contact"><i class="fas fa-envelope"></i> Contact Us</li>
-        <li id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</li>
-      </ul>
+     <ul class="sidebar-nav">
+  <li class="active" data-section="dashboard"><i class="fas fa-home"></i> Dashboard</li>
+  <li onclick="window.location.href='courses.html'"><i class="fas fa-play"></i> Courses</li>
+  <li data-section="progress"><i class="fas fa-chart-line"></i> Progress</li>
+  <li data-section="goals"><i class="fas fa-bullseye"></i> Goals</li>
+  <li data-section="profile"><i class="fas fa-user"></i> Profile</li>
+  <li data-section="contact"><i class="fas fa-envelope"></i> Contact Us</li>
+  <li id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</li>
+</ul>
     </aside>
 <main class="main-content">
       <header class="top-bar">
@@ -35,41 +35,41 @@
       </header>
 
       <section id="dashboard" class="section active">
-        <h2>Dashboard</h2>
-        <div class="card-grid">
-          <div class="card blue">
-            <h3>Courses Watched</h3>
-            <p id="coursesWatchedCount">5</p>
-          </div>
-          <div class="card green">
-            <h3>Total Courses</h3>
-            <p id="totalCoursesCount">20</p>
-          </div>
-          <div class="card yellow">
-            <h3>Quizzes Attempted</h3>
-            <p id="quizzesAttemptedCount">10</p>
-          </div>
-          <div class="card red">
-            <h3>Goals Progress</h3>
-            <p id="goalsProgressPercent">50%</p>
-          </div>
-        </div>
-      </section>
+  <h2>Dashboard</h2>
 
-      <section id="courses" class="section">
-        <h2>Courses</h2>
-        <!-- TODO: Course list UI -->
-      </section>
+  <!-- Top 4 Cards -->
+  <div class="card-grid">
+    <div class="card blue">
+      <h3>Courses Watched</h3>
+      <p id="coursesWatchedCount">5</p>
+    </div>
+    <div class="card green">
+      <h3>Total Courses</h3>
+      <p id="totalCoursesCount">20</p>
+    </div>
+    <div class="card yellow">
+      <h3>Quizzes Attempted</h3>
+      <p id="quizzesAttemptedCount">10</p>
+    </div>
+    <div class="card red">
+      <h3>Goals Progress</h3>
+      <p id="goalsProgressPercent">50%</p>
+    </div>
+  </div>
 
-      <section id="progress" class="section">
-        <h2>Progress</h2>
-        <!-- TODO: Progress tracking UI -->
-      </section>
+<!-- Progress Subsection -->
+<h3 class="sub-heading">Progress</h3>
+<div class="card-grid progress-cards">
+  <div class="card">📈 Placeholder for Progress Chart 1</div>
+  <div class="card">📊 Placeholder for Progress Chart 2</div>
+</div>
 
-      <section id="goals" class="section">
-        <h2>Goals</h2>
-        <!-- TODO: Goals section -->
-      </section>
+<!-- Goals Subsection -->
+<h3 class="sub-heading">Goals</h3>
+<div class="card-grid goals-cards">
+  <div class="card">🎯 Placeholder for Goal 1</div>
+  <div class="card">💰 Placeholder for Goal 2</div>
+</div>
 
       <section id="profile" class="section">
         <h2>Profile</h2>
