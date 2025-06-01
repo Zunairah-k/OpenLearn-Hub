@@ -1,13 +1,11 @@
+//test1 
+console.log("✅ chatbot.js loaded");
+
 // Toggle chatbot visibility
 function toggleChatbot() {
     const chatbot = document.getElementById("chatbot-container");
     chatbot.style.display = chatbot.style.display === "flex" ? "none" : "flex";
 }
-
-// Close chatbot
-document.getElementById("close-btn").addEventListener("click", function() {
-    document.getElementById("chatbot-container").style.display = "none";
-});
 
 // Handle message sending
 function sendMessage() {
@@ -19,13 +17,17 @@ function sendMessage() {
 
      // Show animated typing indicator
      const typingIndicator = displayTypingIndicator();
+     //test2
+     console.log("📨 sendMessage triggered");
+     console.log("User input:", userInput);
 
     // Send the message to the backend
-    fetch("http://localhost:5000/recommend-courses", {
+    fetch("https://openlearn-hub-backend.onrender.com/recommend-courses", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userInput })
     })
+    
     .then(response => response.json())
     .then(data => {
             removeTypingIndicator(); // Remove typing dots
@@ -41,6 +43,9 @@ function sendMessage() {
         removeTypingIndicator(); // Remove typing dots
         displayMessage("Oops! Something went wrong.", "bot");
     });
+    //test3
+    console.log("🚀 Sending request to backend...");
+
 }
 
 // Display messages in chat
@@ -87,11 +92,10 @@ function displayTypingIndicator() {
     typingDiv.id = "typing-indicator";
     
     typingDiv.innerHTML = `
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
     `;
-
     messagesContainer.appendChild(typingDiv);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }

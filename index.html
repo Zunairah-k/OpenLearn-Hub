@@ -91,7 +91,7 @@
             document.getElementById("nav-menu").classList.toggle("show");
         }
     </script>
-     <script src="index.js"></script>
+     <script type="module" src="script.js"></script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
         import { getAuth } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
@@ -189,17 +189,9 @@
       </script>
     <script src="speechsearch.js" defer></script>
     <script type="module" src="firebase.js"></script>
-    <script type="module" src="script.js"></script>
 
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbot</title>
     <link rel="stylesheet" href="chatbot.css">
-</head>
-<body>
 
     <!-- Chatbot Toggle Button -->
     <div id="chatbot-btn" onclick="toggleChatbot()">💬</div>
@@ -227,10 +219,7 @@
             <button onclick="sendMessage()">➤</button>
         </div>
     </div>
-
     <script src="chatbot.js"></script>
-</body>
-</html>
 
 </body>
 </html>
