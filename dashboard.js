@@ -7,6 +7,53 @@ window.addEventListener('DOMContentLoaded', () => {
   const avatar = document.getElementById('avatar');
   const logoutBtn = document.getElementById('logoutBtn');
 
+async function loadQuizResults(uid) {
+  //const quizResultsRef = doc(db, "users", uid);
+  const quizSnapshot = await fetch(`https://openlearn-hub-backend.onrender.com/quiz-results/${uid}`);
+  const results = await quizSnapshot.json();
+
+  if (!Array.isArray(results)) return;
+    
+  document.getElementById("quizzesAttemptedCount").textContent = results.length;
+
+  const labels = [];
+  const data = [];
+  const backgroundColors = [];
+
+  results.forEach(result => {
+    const percent = Math.round((result.score / result.total) * 100);
+    const label = result.videoId || "Quiz";
+
+    labels.push(label);
+    data.push(percent);
+    if (percent >= 80) backgroundColors.push("green");
+    else if (percent >= 50) backgroundColors.push("orange");
+    else backgroundColors.push("red");
+  });
+
+  const ctx = document.getElementById("quizChart").getContext("2d");
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels,
+      datasets: [{
+        label: "Quiz Accuracy (%)",
+        data,
+        backgroundColor: backgroundColors
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100
+        }
+      }
+    }
+  });
+}
+
   onAuthStateChanged(auth, async (user) => {
     if (user) {
       try {
@@ -63,6 +110,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
           // Update badges here
           updateBadges(completedCount, weeklyCompletedCount);
+          console.log("📊 About to load quiz results for:", user.uid);
+          await loadQuizResults(user.uid); 
 
         } else {
           resetUI();
@@ -74,6 +123,7 @@ window.addEventListener('DOMContentLoaded', () => {
     } else {
       window.location.href = 'signin.html';
     }
+
   });
 
   function resetUI() {
@@ -149,6 +199,8 @@ if (streakBadge) {
   document.getElementById('cancelLogout').addEventListener('click', () => {
     document.getElementById('logoutPopup').classList.add('hidden');
   });
+
+  //async function loadQuizResults(uid) {
 
   // Save weekly goal button inside DOMContentLoaded!
   document.getElementById('saveGoalBtn').addEventListener('click', async () => {

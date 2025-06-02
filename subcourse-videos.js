@@ -55,25 +55,49 @@ function getSubCourseFromURL() {
   return decodeURIComponent(urlParams.get("name") || "").toLowerCase().trim();
 }
 
-window.submitQuiz = function(button) {
+window.submitQuiz = async function(button) {
   const box = button.closest(".quiz-box");
   const questions = box.querySelectorAll("ol > li");
   let score = 0;
 
   questions.forEach((q, i) => {
     const selected = q.querySelector("input[type='radio']:checked");
-    const answer = currentQuizData[i].answer.trim();
-    if (selected && selected.value.trim().charAt(0).toUpperCase() === answer.trim().toUpperCase()) {
+    const answer = currentQuizData[i].answer;
+    //if (selected && selected.value.trim().startsWith(answer)) {
+     if (selected && selected.value.trim().charAt(0)==answer) {
+    //if (selected && selected.value.trim().split('.')[0]=== answer) {
       score++;
     }
   });
 
-  alert(`🎉 You scored ${score} out of ${currentQuizData.length}!`);
-  document.querySelector(".quiz-modal")?.remove();
-  const loader = document.getElementById("quizloading");
-  if(loader)
-    loader.classList.add("hidden");
+  const total = currentQuizData.length;
+
+  // ✅ Send to backend
+  const user = auth.currentUser;
+  if (user) {
+    try {
+      await fetch("https://openlearn-hub-backend.onrender.com/submit-quiz", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          uid: user.uid,
+          videoId: box.closest(".quiz-modal").getAttribute("data-video-id"),
+          score,
+          total,
+          difficulty: "beginner" // You can make this dynamic later
+        })
+      });
+    } catch (err) {
+      console.error("Failed to submit quiz result:", err);
+    }
+  }
+
+  alert(`🎉 You scored ${score} out of ${total}!`);
+  document.querySelector(".quiz-modal").remove();
 };
+
 
 async function displayVideos(data) {
   const container = document.querySelector(".video-container");
@@ -160,7 +184,8 @@ document.body.appendChild(loader);
       if (!data.quiz || !Array.isArray(data.quiz)) {
         throw new Error("Quiz data missing or invalid");
       }
-      showQuizModal(data.quiz);
+      showQuizModal(data.quiz, videoId); 
+
     })
     .catch(err => {
       console.error("Quiz fetch failed:", err);
@@ -189,11 +214,12 @@ const thumbnail = videoWrapper.querySelector(".video-thumbnail");
   });
 }
 
-function showQuizModal(quizData) {
+function showQuizModal(quizData, videoId) {
   currentQuizData = quizData;
 
   const modal = document.createElement("div");
   modal.className = "quiz-modal";
+  modal.setAttribute("data-video-id", videoId); 
 
   // HTML: Close button + quiz box
   let html = `

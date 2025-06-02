@@ -9,6 +9,7 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
   /> 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <div class="dashboard">
@@ -49,7 +50,7 @@
     </div>
     <div class="card yellow">
       <h3>Quizzes Attempted</h3>
-      <p id="quizzesAttemptedCount">10</p>
+      <p id="quizzesAttemptedCount">0</p>
     </div>
     <div class="card red">
       <h3>Goals Progress</h3>
@@ -61,7 +62,9 @@
 <h3 class="sub-heading">Progress</h3>
 <div class="card-grid progress-cards">
   <div class="card">📈 Placeholder for Progress Chart 1</div>
-  <div class="card">📊 Placeholder for Progress Chart 2</div>
+  <div class="card">
+    <canvas id="quizChart" width="400" height="200"></canvas>
+  </div>
 </div>
 
 <!-- Goals Subsection -->
