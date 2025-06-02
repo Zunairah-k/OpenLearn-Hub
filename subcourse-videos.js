@@ -1,40 +1,70 @@
 let currentQuizData = [];
 // STEP 1: Fetch videos.json from local data folder
+import {
+  getFirestore,
+  doc,
+  updateDoc,
+  getDoc,
+  deleteField
+} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+
+import {
+  getAuth,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+
 const API_URL = "./videos.json";
-let allVideos = []; // Global to use across filters
+const db = getFirestore();
+const auth = getAuth();
+let allVideos = [];
 
-// STEP 2: Fetch the data and pass it directly to displayVideos (no conversion needed)
-fetch(API_URL)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then(data => {
-    allVideos = data;
-    displayVideos(allVideos); // No conversion needed!
-    setupFilters();
-  })
-  .catch(error => {
-    console.error("Error fetching videos:", error);
-    document.querySelector(".video-container").innerHTML = "<p>Failed to load videos.</p>";
-  });
+// ---------------- FIREBASE HANDLERS ----------------
 
-// STEP 3: Display the videos based on subcourse from URL
-function getSubCourseFromURL() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const subcourseName = urlParams.get("name") || "";
-  return decodeURIComponent(subcourseName).toLowerCase().trim();
+async function getCompletedVideos(uid) {
+  const docRef = doc(db, "users", uid);
+  const snap = await getDoc(docRef);
+  return snap.exists() ? snap.data().completedVideos || {} : {};
 }
 
-function displayVideos(data) {
+async function markVideoCompleted(uid, videoId) {
+  const userDoc = doc(db, "users", uid);
+  await updateDoc(userDoc, {
+    [`completedVideos.${videoId}`]: true
+  });
+}
+
+async function unmarkVideoCompleted(uid, videoId) {
+  const userDoc = doc(db, "users", uid);
+  await updateDoc(userDoc, {
+    [`completedVideos.${videoId}`]: deleteField()
+  });
+}
+
+function isVideoCompleted(completedVideos, videoId) {
+  return !!completedVideos?.[videoId];
+}
+
+// ---------------- FETCH + DISPLAY ----------------
+
+function getSubCourseFromURL() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return decodeURIComponent(urlParams.get("name") || "").toLowerCase().trim();
+}
+
+async function displayVideos(data) {
   const container = document.querySelector(".video-container");
-  container.innerHTML = ""; // Clear previous
+  container.innerHTML = "";
 
   const subCourse = getSubCourseFromURL();
+  const user = auth.currentUser;
 
-  // Filter videos ONLY for current subcourse
+  if (!user) {
+    container.innerHTML = "<p>Please log in to track progress.</p>";
+    return;
+  }
+
+  const completedVideos = await getCompletedVideos(user.uid);
+
   const videosToShow = data.filter(video =>
     video.subCourse?.toLowerCase().trim() === subCourse
   );
@@ -52,34 +82,40 @@ function displayVideos(data) {
     const videoWrapper = document.createElement("div");
     videoWrapper.classList.add("video-wrapper");
 
+    const isCompleted = isVideoCompleted(completedVideos, video.videoId);
 
     videoWrapper.innerHTML = `
-      <div class="video-card">
+      <div class="video-card ${isCompleted ? "completed" : ""}">
         <img src="${video.thumbnail}" class="video-thumbnail" alt="Video Thumbnail">
         <div class="video-info">
           <h4 class="video-title">${video.title}</h4>
           <p class="video-description">${video.description}</p>
           <p class="video-meta">
-            <strong>Level:</strong> ${video.level} | 
-            <strong>Duration:</strong> ${video.duration} | 
+            <strong>Level:</strong> ${video.level} |
+            <strong>Duration:</strong> ${video.duration} |
             <strong>Language:</strong> ${languageDisplay}
           </p>
           <button class="quiz-btn" data-video-id="${video.videoId}" data-title="${video.title}">📝 Take Quiz</button>
+          <label class="completion-checkbox">
+            <input type="checkbox" data-video-id="${video.videoId}" ${isCompleted ? "checked" : ""}>
+            Mark as Completed
+          </label>
         </div>
         <iframe
-          src="https://www.youtube.com/embed/${video.videoId}"
+          src="https://www.youtube.com/embed/${video.videoId}?enablejsapi=1"
           frameborder="0"
           allowfullscreen
           class="video-frame"
           style="display:none"
+          id="yt-${video.videoId}"
         ></iframe>
       </div>
     `;
 
-    videoWrapper.querySelector(".quiz-btn").addEventListener("click", () => {
-  const btn = videoWrapper.querySelector(".quiz-btn");
-  const videoId = btn.getAttribute("data-video-id");
-  const title = btn.getAttribute("data-title");
+    const quizBtn = videoWrapper.querySelector(".quiz-btn");
+    quizBtn.addEventListener("click", () => {
+      const videoId = quizBtn.getAttribute("data-video-id");
+      const title = quizBtn.getAttribute("data-title");
 
   fetch("https://openlearn-hub-backend.onrender.com/generate-quiz", {
     method: "POST",
@@ -105,6 +141,27 @@ function displayVideos(data) {
       alert("Quiz generation failed. Please try again.");
     });
 });
+
+const thumbnail = videoWrapper.querySelector(".video-thumbnail");
+    const iframe = videoWrapper.querySelector("iframe");
+    thumbnail.addEventListener("click", () => {
+      iframe.style.display = "block";
+    });
+
+    const checkbox = videoWrapper.querySelector("input[type='checkbox']");
+    checkbox.addEventListener("change", async () => {
+      if (checkbox.checked) {
+        await markVideoCompleted(user.uid, video.videoId);
+        videoWrapper.querySelector(".video-card").classList.add("completed");
+      } else {
+        await unmarkVideoCompleted(user.uid, video.videoId);
+        videoWrapper.querySelector(".video-card").classList.remove("completed");
+      }
+    });
+
+    container.appendChild(videoWrapper);
+  });
+}
 
 function showQuizModal(quizData) {
   currentQuizData = quizData; // 👈 Save for global access
@@ -144,14 +201,8 @@ function submitQuiz(button) {
   document.querySelector(".quiz-modal").remove();
 }
 
-    videoWrapper.querySelector(".video-thumbnail").addEventListener("click", () => {
-      const iframe = videoWrapper.querySelector(".video-frame");
-      iframe.style.display = "block";
-    });
+// ---------------- FILTERS ----------------
 
-    container.appendChild(videoWrapper);
-  });
-}
 function setupFilters() {
   const levelFilter = document.getElementById("filter-level");
   const durationFilter = document.getElementById("filter-duration");
@@ -159,9 +210,9 @@ function setupFilters() {
 
   const subCourse = getSubCourseFromURL();
   document.getElementById("subcourse-title").textContent = subCourse
-  .split(" ")
-  .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-  .join(" ");
+    .split(" ")
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
 
   function applyFilters() {
     const selectedLevel = levelFilter.value;
@@ -172,7 +223,7 @@ function setupFilters() {
       const matchSubCourse = video.subCourse?.toLowerCase().trim() === subCourse;
       const matchLevel = !selectedLevel || video.level === selectedLevel;
       const matchDuration = !selectedDuration || video.duration === selectedDuration;
-      const matchLanguage = !selectedLanguage || 
+      const matchLanguage = !selectedLanguage ||
         (Array.isArray(video.language)
           ? video.language.includes(selectedLanguage)
           : video.language === selectedLanguage);
@@ -187,3 +238,53 @@ function setupFilters() {
   durationFilter.addEventListener("change", applyFilters);
   languageFilter.addEventListener("change", applyFilters);
 }
+
+// ---------------- YOUTUBE API (Auto Complete) ----------------
+
+function setupYouTubeAPI() {
+  window.onYouTubeIframeAPIReady = () => {
+    const iframes = document.querySelectorAll("iframe[id^='yt-']");
+    iframes.forEach(iframe => {
+      const player = new YT.Player(iframe.id, {
+        events: {
+          'onStateChange': async (event) => {
+            if (event.data === YT.PlayerState.ENDED) {
+              const videoId = iframe.id.replace("yt-", "");
+              const user = auth.currentUser;
+              if (user) {
+                await markVideoCompleted(user.uid, videoId);
+                const card = iframe.closest(".video-card");
+                if (card) card.classList.add("completed");
+              }
+            }
+          }
+        }
+      });
+    });
+  };
+
+  const tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  document.body.appendChild(tag);
+}
+
+// ---------------- INIT ----------------
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    fetch(API_URL)
+      .then(res => res.json())
+      .then(data => {
+        allVideos = data;
+        displayVideos(allVideos);
+        setupFilters();
+        setupYouTubeAPI();
+      })
+      .catch(err => {
+        console.error("Error fetching videos.json:", err);
+        document.querySelector(".video-container").innerHTML = "<p>Failed to load videos.</p>";
+      });
+  } else {
+    document.querySelector(".video-container").innerHTML = "<p>Please log in to view videos.</p>";
+  }
+});

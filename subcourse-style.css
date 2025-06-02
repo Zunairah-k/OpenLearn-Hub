@@ -1,148 +1,240 @@
-/* Base Styling */
+/* Neutral, light, slightly textured background */
 body {
-    font-family: 'Segoe UI',sans-serif;
-    margin: 0;
-    padding: 20px;
-    background-color: #f3f4f6;
-    color: #1e1e2f;
-  }
-  
-  /* Title Styling */
-  #subcourse-title {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-    text-align: center;
-    color: #2d2d2d;
-    letter-spacing: 1px;
-  }
-  
-  /* Filter Dropdowns */
-.filters {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin-bottom: 40px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 30px 20px;
+  background: #f9fafc; /* very light, almost white */
+  background-image: repeating-radial-gradient(circle at 0 0, #eaeef1 0, #eaeef1 2px, transparent 2px, transparent 10px);
+  color: #333;
+  min-height: 100vh;
 }
 
+/* Page Title */
+
+/* Title with subtle lines */
+#subcourse-title {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #222;
+  font-weight: 700;
+  position: relative;
+}
+
+#subcourse-title::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: #3498db; /* nice blue */
+  margin: 10px auto 0;
+  border-radius: 2px;
+  opacity: 0.7;
+}
+
+#subcourse-title::before {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 2px;
+  background: #2980b9;
+  margin: 5px auto 15px;
+  border-radius: 2px;
+  opacity: 0.5;
+}
+
+/* Filters container - toned down dark */
+.filters {
+  max-width: 900px;
+  margin: 0 auto 40px auto;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  padding: 15px 25px;
+  background: #222; /* dark but not pitch black */
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  border: 1px solid #3498db; /* subtle blue border */
+}
+
+/* Filters select - subtle style */
 .filters select {
-  padding: 10px 15px;
+  padding: 12px 18px;
   font-size: 1rem;
-  border: 1px solid #d1d5db;
+  border: 1.8px solid #3498db;
   border-radius: 8px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-  transition: all 0.2s ease-in-out;
-  outline: none;
+  background: #333;
+  color: #eee;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  min-width: 160px;
+  font-weight: 600;
+  box-shadow: inset 0 0 6px rgba(52, 152, 219, 0.3);
 }
 
 .filters select:hover,
 .filters select:focus {
-  border-color: #007bff;
-  box-shadow: 0 4px 12px rgba(0,123,255,0.15);
+  border-color: #2980b9;
+  box-shadow: 0 0 12px rgba(52, 152, 219, 0.6), inset 0 0 10px rgba(52, 152, 219, 0.5);
+  outline: none;
+  color: #fff;
+  background: #2c3e50;
+}
+/* Video Grid Layout */
+.video-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 38px;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 10px 60px 10px;
 }
 
-  /* Video Grid Layout */
-  #videoContainer, .video-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    padding: 20px;
+/* Video Card Styling with different gradients side-by-side */
+/* Using nth-child(odd/even) for 2 colors, and cycling through 5 colors for variety */
+
+.video-card {
+  border-radius: 16px;
+  padding: 25px 20px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  cursor: default;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 12px 26px rgb(0 0 0 / 0.08);
+}
+
+/* Five color gradients cycling for each card */
+.video-container .video-card:nth-child(5n+1) {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.video-container .video-card:nth-child(5n+2) {
+  background: linear-gradient(135deg, #f7971e, #ffd200);
+}
+
+.video-container .video-card:nth-child(5n+3) {
+  background: linear-gradient(135deg, #f857a6, #ff5858);
+}
+
+.video-container .video-card:nth-child(5n+4) {
+  background: linear-gradient(135deg, #43cea2, #185a9d);
+}
+
+.video-container .video-card:nth-child(5n+0) {
+  background: linear-gradient(135deg, #30cfd0, #330867);
+}
+
+/* Hover effect for cards */
+.video-card:hover {
+  transform: translateY(-8px) scale(1.04);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+}
+
+/* Thumbnail */
+.video-thumbnail {
+  width: 100%;
+  height: 140px;
+  border-radius: 14px;
+  cursor: pointer;
+  object-fit: cover;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
+}
+
+.video-thumbnail:hover {
+  transform: scale(1.07);
+}
+
+/* Video Info Section */
+.video-info {
+  margin-top: 15px;
+  text-align: left;
+  width: 100%;
+}
+
+/* Title */
+.video-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 12px 0 8px;
+  line-height: 1.25;
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+/* Description */
+.video-description {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 12px;
+  opacity: 0.85;
+  font-weight: 600;
+  color: #f0eaea;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
+/* Meta info (level, duration, etc.) */
+.video-meta {
+  font-size: 0.9rem;
+  font-style: italic;
+  opacity: 0.85;
+  color: #ddd;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Video Iframe */
+iframe, .video-frame {
+  width: 100%;
+  height: 240px;
+  margin-top: 18px;
+  border-radius: 15px;
+  display: none;
+  box-shadow: 0 8px 26px rgba(0,0,0,0.6);
+  background: #000;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  #subcourse-title {
+    font-size: 2.3rem;
   }
-  
-  /* Video Card Styling */
-  .video-card {
-    background-color: #ffffff;
-    border-radius: 14px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-    padding: 20px;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-    display: flex;
+  .filters {
     flex-direction: column;
     align-items: center;
+    gap: 18px;
   }
-  
-  /* Hover Effect */
-  .video-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  .filters select {
+    width: 85%;
+    min-width: unset;
   }
-  
-  /* Thumbnail */
-  .video-thumbnail {
-    width: 100%;
-    height: 100px;
-    border-radius: 10px;
-    cursor: pointer;
-    object-fit: cover;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  .video-container {
+    grid-template-columns: 1fr;
+    gap: 32px;
   }
-  
-  /* Video Info Section */
-  .video-info {
-    margin-top: 12px;
-    text-align: left;
-    width: 100%;
-  }
-  
-  /* Title */
-  .video-title {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #222;
-    margin: 10px 0 5px;
-  }
-  
-  /* Description */
-  .video-description {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    color: #444;
-    margin-bottom: 10px;
-  }
-  
-  /* Meta info (level, duration, etc.) */
-  .video-meta {
-    font-size: 0.85rem;
-    color: #666;
-    font-style: italic;
-    margin-bottom: 10px;
-  }
-  
-  /* Video Iframe */
-  iframe, .video-frame {
-    width: 100%;
-    height: 220px;
-    margin-top: 12px;
-    border-radius: 10px;
-    display: none; /* hidden by default, shown on click */
-    box-shadow: 0 4px 16px rgba(0,0,0,0.6);
-  }
-  
-  /* Responsive Enhancements */
-  @media (max-width: 768px) {
-    #subcourse-title {
-      font-size: 2.2rem;
-    }
-  
-    .video-card {
-      padding: 14px;
-    }
-  
-    .video-title {
-      font-size: 1.1rem;
-    }
-  
-    .video-description {
-      font-size: 0.9rem;
-    }
-  
-    .video-meta {
-      font-size: 0.8rem;
+}
+.completion-checkbox {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+}
 
-      .filters {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
-  }
+.completion-checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: green;
+  cursor: pointer;
+}
+
+.video-card.completed {
+  border: 2px solid #0f0;
+  background-color: #eaffea;
+}

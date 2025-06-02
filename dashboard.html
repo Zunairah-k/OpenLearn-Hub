@@ -45,7 +45,7 @@
     </div>
     <div class="card green">
       <h3>Total Courses</h3>
-      <p id="totalCoursesCount">20</p>
+      <p id="totalCoursesCount">152</p>
     </div>
     <div class="card yellow">
       <h3>Quizzes Attempted</h3>
@@ -65,10 +65,29 @@
 </div>
 
 <!-- Goals Subsection -->
+<!-- Goals Subsection -->
+<!-- Goals Subsection -->
 <h3 class="sub-heading">Goals</h3>
-<div class="card-grid goals-cards">
-  <div class="card">🎯 Placeholder for Goal 1</div>
-  <div class="card">💰 Placeholder for Goal 2</div>
+<div class="goals-wrapper">
+  <div class="goal-form-modern">
+    <h4>🎯 Set Weekly Goal</h4>
+    <div class="input-group">
+      <input type="number" id="goalInput" required placeholder=" " min="1" />
+      <label for="goalInput">No. of videos</label>
+    </div>
+    <button id="saveGoalBtn">Save Goal</button>
+    <p id="goalStatusMsg" class="status-message"></p>
+  </div>
+
+  <div class="goal-progress-modern">
+    <h4>📊 Your Weekly Progress</h4>
+    <p>Goal: <span id="weeklyGoalDisplay">Not set</span></p>
+    <p>Completed: <span id="completedVideosDisplay">0</span></p>
+    <div class="progress-pill">
+      <span>Progress</span>
+      <span id="weeklyProgressPercent">0%</span>
+    </div>
+  </div>
 </div>
 
       <section id="profile" class="section">
