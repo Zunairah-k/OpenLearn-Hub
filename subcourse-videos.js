@@ -1,3 +1,4 @@
+let currentQuizData = [];
 // STEP 1: Fetch videos.json from local data folder
 const API_URL = "./videos.json";
 let allVideos = []; // Global to use across filters
@@ -63,6 +64,7 @@ function displayVideos(data) {
             <strong>Duration:</strong> ${video.duration} | 
             <strong>Language:</strong> ${languageDisplay}
           </p>
+          <button class="quiz-btn" data-video-id="${video.videoId}" data-title="${video.title}">📝 Take Quiz</button>
         </div>
         <iframe
           src="https://www.youtube.com/embed/${video.videoId}"
@@ -73,6 +75,74 @@ function displayVideos(data) {
         ></iframe>
       </div>
     `;
+
+    videoWrapper.querySelector(".quiz-btn").addEventListener("click", () => {
+  const btn = videoWrapper.querySelector(".quiz-btn");
+  const videoId = btn.getAttribute("data-video-id");
+  const title = btn.getAttribute("data-title");
+
+  fetch("https://openlearn-hub-backend.onrender.com/generate-quiz", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+      body: JSON.stringify({ 
+      videoTitle: title,
+      difficulty: "beginner",  
+      topic: subCourse        
+    })
+
+  })
+    .then(res => res.json())
+    .then(data => {
+  if (!data.quiz || !Array.isArray(data.quiz)) {
+    throw new Error("Quiz data missing or invalid");
+  }
+  showQuizModal(data.quiz);
+})
+    .catch(err => {
+      console.error("Quiz fetch failed:", err);
+      alert("Quiz generation failed. Please try again.");
+    });
+});
+
+function showQuizModal(quizData) {
+  currentQuizData = quizData; // 👈 Save for global access
+  const modal = document.createElement("div");
+  modal.className = "quiz-modal";
+
+  let html = `<div class="quiz-box"><h3>Quiz</h3><ol>`;
+
+  quizData.forEach((q, idx) => {
+    html += `<li>
+      <p>${q.question}</p>
+      ${q.options.map(opt => `
+        <label><input type="radio" name="q${idx}" value="${opt}"> ${opt}</label><br>
+      `).join("")}
+    </li>`;
+  });
+
+  html += `</ol><button onclick="submitQuiz(this)">Submit</button></div>`;
+  modal.innerHTML = html;
+  document.body.appendChild(modal);
+}
+
+function submitQuiz(button) {
+  const box = button.closest(".quiz-box");
+  const questions = box.querySelectorAll("ol > li");
+  let score = 0;
+
+  questions.forEach((q, i) => {
+    const selected = q.querySelector("input[type='radio']:checked");
+    const answer = currentQuizData[i].answer;
+    if (selected && selected.value === answer) {
+      score++;
+    }
+  });
+
+  alert(`You scored ${score} out of ${currentQuizData.length}!`);
+  document.querySelector(".quiz-modal").remove();
+}
 
     videoWrapper.querySelector(".video-thumbnail").addEventListener("click", () => {
       const iframe = videoWrapper.querySelector(".video-frame");
