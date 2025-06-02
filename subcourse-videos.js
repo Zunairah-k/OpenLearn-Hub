@@ -51,6 +51,26 @@ function getSubCourseFromURL() {
   return decodeURIComponent(urlParams.get("name") || "").toLowerCase().trim();
 }
 
+window.submitQuiz = function(button) {
+  const box = button.closest(".quiz-box");
+  const questions = box.querySelectorAll("ol > li");
+  let score = 0;
+
+  questions.forEach((q, i) => {
+    const selected = q.querySelector("input[type='radio']:checked");
+    const answer = currentQuizData[i].answer.trim();
+    if (selected && selected.value.trim().charAt(0).toUpperCase() === answer.trim().toUpperCase()) {
+      score++;
+    }
+  });
+
+  alert(`🎉 You scored ${score} out of ${currentQuizData.length}!`);
+  document.querySelector(".quiz-modal")?.remove();
+  const loader = document.getElementById("quizloading");
+  if(loader)
+    loader.classList.add("hidden");
+};
+
 async function displayVideos(data) {
   const container = document.querySelector(".video-container");
   container.innerHTML = "";
@@ -112,30 +132,32 @@ async function displayVideos(data) {
       </div>
     `;
 
-    const quizBtn = videoWrapper.querySelector(".quiz-btn");
-    quizBtn.addEventListener("click", () => {
-      const videoId = quizBtn.getAttribute("data-video-id");
-      const title = quizBtn.getAttribute("data-title");
+    videoWrapper.querySelector(".quiz-btn").addEventListener("click", () => {
+      const loader = document.createElement("div");
+loader.className = "quiz-loading";
+loader.innerHTML = "⏳ Generating quiz...";
+document.body.appendChild(loader);
+  const btn = videoWrapper.querySelector(".quiz-btn");
+  const videoId = btn.getAttribute("data-video-id");
+  const title = btn.getAttribute("data-title");
+  const subCourse = getSubCourseFromURL(); // you already have this function
 
   fetch("https://openlearn-hub-backend.onrender.com/generate-quiz", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-      body: JSON.stringify({ 
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
       videoTitle: title,
-      difficulty: "beginner",  
-      topic: subCourse        
+      difficulty: "beginner", // make dynamic later if needed
+      topic: subCourse
     })
-
   })
     .then(res => res.json())
     .then(data => {
-  if (!data.quiz || !Array.isArray(data.quiz)) {
-    throw new Error("Quiz data missing or invalid");
-  }
-  showQuizModal(data.quiz);
-})
+      if (!data.quiz || !Array.isArray(data.quiz)) {
+        throw new Error("Quiz data missing or invalid");
+      }
+      showQuizModal(data.quiz);
+    })
     .catch(err => {
       console.error("Quiz fetch failed:", err);
       alert("Quiz generation failed. Please try again.");
@@ -164,11 +186,20 @@ const thumbnail = videoWrapper.querySelector(".video-thumbnail");
 }
 
 function showQuizModal(quizData) {
-  currentQuizData = quizData; // 👈 Save for global access
+  currentQuizData = quizData;
+
   const modal = document.createElement("div");
   modal.className = "quiz-modal";
 
-  let html = `<div class="quiz-box"><h3>Quiz</h3><ol>`;
+  // HTML: Close button + quiz box
+  let html = `
+    <div class="quiz-box">
+      <div class="quiz-header">
+        <h3>🧠 Quiz</h3>
+        <button class="close-btn" onclick="closeQuizModal()">❌</button>
+      </div>
+      <ol>
+  `;
 
   quizData.forEach((q, idx) => {
     html += `<li>
@@ -179,27 +210,24 @@ function showQuizModal(quizData) {
     </li>`;
   });
 
-  html += `</ol><button onclick="submitQuiz(this)">Submit</button></div>`;
+  html += `</ol>
+      <button onclick="submitQuiz(this)">Submit</button>
+    </div>`;
+
   modal.innerHTML = html;
   document.body.appendChild(modal);
 }
 
-function submitQuiz(button) {
-  const box = button.closest(".quiz-box");
-  const questions = box.querySelectorAll("ol > li");
-  let score = 0;
+/* Handle form submission
+  document.getElementById("quizForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    submitQuiz();
+  });*/
 
-  questions.forEach((q, i) => {
-    const selected = q.querySelector("input[type='radio']:checked");
-    const answer = currentQuizData[i].answer;
-    if (selected && selected.value === answer) {
-      score++;
-    }
-  });
-
-  alert(`You scored ${score} out of ${currentQuizData.length}!`);
-  document.querySelector(".quiz-modal").remove();
-}
+  window.closeQuizModal = function() {
+  document.querySelector(".quiz-modal")?.remove();
+  document.getElementById("quizLoading")?.classList.add("hidden"); // Just in case it's stuck
+};
 
 // ---------------- FILTERS ----------------
 
