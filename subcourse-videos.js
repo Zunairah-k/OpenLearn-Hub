@@ -1,3 +1,5 @@
+let currentQuizData = [];
+// STEP 1: Fetch videos.json from local data folder
 import {
   getFirestore,
   doc,
@@ -97,6 +99,7 @@ async function displayVideos(data) {
             <strong>Duration:</strong> ${video.duration} |
             <strong>Language:</strong> ${languageDisplay}
           </p>
+          <button class="quiz-btn" data-video-id="${video.videoId}" data-title="${video.title}">📝 Take Quiz</button>
           <label class="completion-checkbox">
             <input type="checkbox" data-video-id="${video.videoId}" ${isCompleted ? "checked" : ""}>
             Mark as Completed
@@ -113,7 +116,37 @@ async function displayVideos(data) {
       </div>
     `;
 
-    const thumbnail = videoWrapper.querySelector(".video-thumbnail");
+    const quizBtn = videoWrapper.querySelector(".quiz-btn");
+    quizBtn.addEventListener("click", () => {
+      const videoId = quizBtn.getAttribute("data-video-id");
+      const title = quizBtn.getAttribute("data-title");
+
+  fetch("https://openlearn-hub-backend.onrender.com/generate-quiz", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+      body: JSON.stringify({ 
+      videoTitle: title,
+      difficulty: "beginner",  
+      topic: subCourse        
+    })
+
+  })
+    .then(res => res.json())
+    .then(data => {
+  if (!data.quiz || !Array.isArray(data.quiz)) {
+    throw new Error("Quiz data missing or invalid");
+  }
+  showQuizModal(data.quiz);
+})
+    .catch(err => {
+      console.error("Quiz fetch failed:", err);
+      alert("Quiz generation failed. Please try again.");
+    });
+});
+
+const thumbnail = videoWrapper.querySelector(".video-thumbnail");
     const iframe = videoWrapper.querySelector("iframe");
     thumbnail.addEventListener("click", () => {
       iframe.style.display = "block";
@@ -123,15 +156,53 @@ async function displayVideos(data) {
     checkbox.addEventListener("change", async () => {
       if (checkbox.checked) {
         await markVideoCompleted(user.uid, video.videoId);
-        videoWrapper.classList.add("completed");
+        videoWrapper.querySelector(".video-card").classList.add("completed");
       } else {
         await unmarkVideoCompleted(user.uid, video.videoId);
-        videoWrapper.classList.remove("completed");
+        videoWrapper.querySelector(".video-card").classList.remove("completed");
       }
     });
 
     container.appendChild(videoWrapper);
   });
+}
+
+function showQuizModal(quizData) {
+  currentQuizData = quizData; // 👈 Save for global access
+  const modal = document.createElement("div");
+  modal.className = "quiz-modal";
+
+  let html = `<div class="quiz-box"><h3>Quiz</h3><ol>`;
+
+  quizData.forEach((q, idx) => {
+    html += `<li>
+      <p>${q.question}</p>
+      ${q.options.map(opt => `
+        <label><input type="radio" name="q${idx}" value="${opt}"> ${opt}</label><br>
+      `).join("")}
+    </li>`;
+  });
+
+  html += `</ol><button onclick="submitQuiz(this)">Submit</button></div>`;
+  modal.innerHTML = html;
+  document.body.appendChild(modal);
+}
+
+function submitQuiz(button) {
+  const box = button.closest(".quiz-box");
+  const questions = box.querySelectorAll("ol > li");
+  let score = 0;
+
+  questions.forEach((q, i) => {
+    const selected = q.querySelector("input[type='radio']:checked");
+    const answer = currentQuizData[i].answer;
+    if (selected && selected.value === answer) {
+      score++;
+    }
+  });
+
+  alert(`You scored ${score} out of ${currentQuizData.length}!`);
+  document.querySelector(".quiz-modal").remove();
 }
 
 // ---------------- FILTERS ----------------
