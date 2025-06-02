@@ -26,8 +26,12 @@ async function getCompletedVideos(uid) {
 
 async function markVideoCompleted(uid, videoId) {
   const userDoc = doc(db, "users", uid);
+  const timestamp = Date.now();
   await updateDoc(userDoc, {
-    [`completedVideos.${videoId}`]: true
+    [`completedVideos.${videoId}`]: {
+      completed: true,
+      timestamp: timestamp
+    }
   });
 }
 
@@ -39,7 +43,7 @@ async function unmarkVideoCompleted(uid, videoId) {
 }
 
 function isVideoCompleted(completedVideos, videoId) {
-  return !!completedVideos?.[videoId];
+  return !!completedVideos?.[videoId]?.completed;
 }
 
 // ---------------- FETCH + DISPLAY ----------------

@@ -393,3 +393,125 @@ padding: 20px;
   font-weight: bold;
   box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.05);
 }
+/* === Badges Section: Glassy + Gradient Glow === */
+.badges-section {
+  margin-top: 60px;
+  padding: 40px;
+  border-radius: 20px;
+  max-width: 1000px;
+  margin-inline: auto;
+  background: linear-gradient(135deg, #30cfd0, #330867);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Sparkles for background */
+.badges-section::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: url('https://www.transparenttextures.com/patterns/stardust.png');
+  opacity: 0.05;
+  animation: floatBG 60s linear infinite;
+  pointer-events: none;
+  top: -50%;
+  left: -50%;
+}
+
+@keyframes floatBG {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(100px, 100px); }
+}
+
+/* Section Title Fix */
+.badges-section .sub-heading {
+  margin-bottom: 30px;
+  font-weight: 800;
+  font-size: 28px;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 1px;
+  animation: fadeIn 1s ease;
+}
+
+/* Badges Flex Container */
+.badges-container {
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+  flex-wrap: wrap;
+  padding: 10px;
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+/* === Badge Card Styling === */
+.badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 130px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.4); /* Lighter default background */
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+  cursor: default;
+  position: relative;
+}
+
+/* 🎨 Hover: Whitish Glass Glow */
+.badge:hover {
+  transform: translateY(-6px) scale(1.07);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25), 0 0 20px rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.85); /* whitish glass pop */
+}
+
+/* Badge Image */
+.badge img {
+  width: 65px;
+  height: 65px;
+  margin-bottom: 10px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.badge:hover img {
+  transform: rotate(5deg) scale(1.15);
+}
+
+/* Badge Text */
+.badge p {
+  font-weight: 700;
+  color: #333;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 5px;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.4);
+}
+
+/* Locked Badge Style */
+.badge.locked {
+  filter: grayscale(100%);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Unlocked Badge Glow */
+.badge.unlocked {
+  filter: none;
+  opacity: 1;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #4caf50;
+}
+
+/* Entry Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
