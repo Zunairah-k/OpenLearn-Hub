@@ -52,6 +52,25 @@ async function loadQuizResults(uid) {
       }
     }
   });
+  // Count perfect quizzes
+let perfectScoreCount = 0;
+
+results.forEach(result => {
+  const percent = Math.round((result.score / result.total) * 100);
+  if (percent === 100) perfectScoreCount++;  // ✅ Count 100% scores
+});
+
+// Unlock Perfectionist Badge if 5 or more perfect scores
+const perfectionistBadge = document.getElementById('perfectionistBadge');
+if (perfectionistBadge) {
+  if (perfectScoreCount >= 5) {
+    perfectionistBadge.classList.add('unlocked');
+    perfectionistBadge.classList.remove('locked');
+  } else {
+    perfectionistBadge.classList.remove('unlocked');
+    perfectionistBadge.classList.add('locked');
+  }
+}
 }
 
   onAuthStateChanged(auth, async (user) => {
@@ -68,6 +87,47 @@ async function loadQuizResults(uid) {
           avatar.textContent = fullName.charAt(0).toUpperCase();
 
           const completedVideos = userData.completedVideos || {};
+          // 🔥 Count completed videos per main category
+const categoryCounts = {};
+
+for (const videoId in completedVideos) {
+  const category = videoId.split('-')[0]; // Get prefix before the first dash
+  if (!categoryCounts[category]) {
+    categoryCounts[category] = 0;
+  }
+  categoryCounts[category]++;
+}
+
+// 🔥 Prepare data for pie chart
+const pieLabels = Object.keys(categoryCounts).map(cat => {
+  if (cat === "tech") return "Tech & Programming";
+  if (cat === "business") return "Business & Finance";
+  if (cat === "languages") return "Languages";
+  if (cat === "personal") return "Personal Development";
+  if (cat === "demanded") return "Highly Demanded Courses";
+  return cat;
+});
+
+const pieData = Object.values(categoryCounts);
+const pieColors = ["#3b82f6", "#22c55e", "#f97316", "#a855f7", "#ec4899"];
+
+// 🔥 Render pie chart
+const pieCtx = document.getElementById("courseCategoryPie").getContext("2d");
+
+new Chart(pieCtx, {
+  type: "pie",
+  data: {
+    labels: pieLabels,
+    datasets: [{
+      label: "Videos Completed by Category",
+      data: pieData,
+      backgroundColor: pieColors
+    }]
+  },
+  options: {
+    responsive: true
+  }
+});
           const completedCount = Object.keys(completedVideos).length;
           document.getElementById('coursesWatchedCount').textContent = completedCount;
           document.getElementById('completedVideosDisplay').textContent = completedCount;
@@ -176,12 +236,6 @@ if (streakBadge) {
     streakBadge.classList.add('locked');
   }
 }
-
-    // Perfectionist badge locked by default (quiz logic pending)
-    if (perfectionistBadge) {
-      perfectionistBadge.classList.add('locked');
-      perfectionistBadge.classList.remove('unlocked');
-    }
   }
 
   logoutBtn.addEventListener('click', () => {
