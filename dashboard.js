@@ -105,36 +105,34 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     // Scholar badge unlock condition: 5+ completed courses
-     // Scholar badge unlock condition: 5+ completed courses
-  if (scholarBadge) {
-    if (completedCount >= 5) {
-      scholarBadge.classList.add('unlocked');
-      scholarBadge.classList.remove('locked');
-    } else {
-      scholarBadge.classList.remove('unlocked');
-      scholarBadge.classList.add('locked');
-    }
-  }
-
-    // Streak badge unlock condition: streakCount >= 1
-    if (streakBadge) {
-      if (streakCount >= 1) {
-        streakBadge.classList.add('unlocked');
-        streakBadge.classList.remove('locked');
-        streakBadge.querySelector('.badge-desc').textContent = `🔥 ${streakCount} day${streakCount > 1 ? 's' : ''} streak! Keep it up!`;
+    if (scholarBadge) {
+      if (completedCount >= 5) {
+        scholarBadge.classList.add('unlocked');
+        scholarBadge.classList.remove('locked');
       } else {
-        streakBadge.classList.remove('unlocked');
-        streakBadge.classList.add('locked');
-        streakBadge.querySelector('.badge-desc').textContent = 'Log in 3 days in a row';
+        scholarBadge.classList.remove('unlocked');
+        scholarBadge.classList.add('locked');
       }
     }
 
-  // Perfectionist badge locked by default (quiz logic pending)
-  if (perfectionistBadge) {
-    perfectionistBadge.classList.add('locked');
-    perfectionistBadge.classList.remove('unlocked');
+    // Snapstreak style streak badge unlock
+// Streak badge unlock condition: 3+ courses completed in one week
+if (streakBadge) {
+  if (weeklyCompletedCount >= 3) {
+    streakBadge.classList.add('unlocked');
+    streakBadge.classList.remove('locked');
+  } else {
+    streakBadge.classList.remove('unlocked');
+    streakBadge.classList.add('locked');
   }
 }
+
+    // Perfectionist badge locked by default (quiz logic pending)
+    if (perfectionistBadge) {
+      perfectionistBadge.classList.add('locked');
+      perfectionistBadge.classList.remove('unlocked');
+    }
+  }
 
   logoutBtn.addEventListener('click', () => {
     document.getElementById('logoutPopup').classList.remove('hidden');
